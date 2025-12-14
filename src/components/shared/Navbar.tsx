@@ -53,7 +53,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2 group">
           <img 
-            src="/logoo.png" 
+            src="/logoo1.png" 
             alt="Shivam GreenSolar Energy Logo" 
             className="h-10 sm:h-12 w-auto group-hover:scale-105 transition-transform"
           />

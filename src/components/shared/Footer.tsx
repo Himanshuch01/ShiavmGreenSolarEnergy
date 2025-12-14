@@ -64,7 +64,7 @@ export default function Footer() {
           <div className="sm:col-span-2 lg:col-span-2">
             <Link to="/" className="flex items-center gap-2 mb-4 sm:mb-6">
               <img 
-                src="/logoo.png" 
+                src="/logoo1.png" 
                 alt="Shivam GreenSolar Energy Logo" 
                 className="h-8 sm:h-10 w-auto"
               />
