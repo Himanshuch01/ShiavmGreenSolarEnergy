@@ -38,8 +38,8 @@ const contactInfo = [
   {
     icon: Phone,
     title: "Phone",
-    content: "+91 1234 567 890",
-    link: "tel:+911234567890",
+    content: "+91 9511048844",
+    link: "tel:+919511048844",
   },
   {
     icon: Mail,
