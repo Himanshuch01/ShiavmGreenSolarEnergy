@@ -116,29 +116,29 @@ export default function About() {
 
             <div className="relative max-w-4xl mx-auto">
               {/* Timeline line */}
-              <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-primary/20 -translate-x-1/2" />
+              <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-primary/20 md:-translate-x-1/2" />
 
               {timeline.map((item, index) => (
                 <AnimatedSection
                   key={item.year}
                   delay={index * 0.1}
-                  className={`relative flex items-center gap-8 mb-12 ${
+                  className={`relative flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8 mb-8 md:mb-12 ${
                     index % 2 === 0 ? "md:flex-row-reverse" : ""
                   }`}
                 >
-                  <div className={`flex-1 ${index % 2 === 0 ? "md:text-right" : ""}`}>
-                    <div className="glass-card p-6 inline-block">
-                      <span className="text-primary font-display font-bold text-2xl">
+                  <div className={`flex-1 w-full md:w-auto ${index % 2 === 0 ? "md:text-right" : ""}`}>
+                    <div className="glass-card p-4 sm:p-6 inline-block w-full md:w-auto">
+                      <span className="text-primary font-display font-bold text-xl sm:text-2xl">
                         {item.year}
                       </span>
-                      <h3 className="font-display font-semibold text-lg mt-2 mb-1">
+                      <h3 className="font-display font-semibold text-base sm:text-lg mt-2 mb-1">
                         {item.title}
                       </h3>
-                      <p className="text-muted-foreground text-sm">{item.description}</p>
+                      <p className="text-muted-foreground text-xs sm:text-sm">{item.description}</p>
                     </div>
                   </div>
 
-                  <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-primary shadow-glow" />
+                  <div className="absolute left-4 md:left-1/2 md:-translate-x-1/2 w-4 h-4 rounded-full bg-primary shadow-glow shrink-0" />
 
                   <div className="flex-1 hidden md:block" />
                 </AnimatedSection>
@@ -163,11 +163,11 @@ export default function About() {
               </p>
             </AnimatedSection>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
               {team.map((member, index) => (
                 <AnimatedSection key={member.name} delay={index * 0.1}>
-                  <div className="glass-card p-6 text-center group">
-                    <div className="relative w-32 h-32 mx-auto mb-6">
+                  <div className="glass-card p-4 sm:p-6 text-center group">
+                    <div className="relative w-24 h-24 sm:w-32 sm:h-32 mx-auto mb-4 sm:mb-6">
                       <img
                         src={member.image}
                         alt={member.name}

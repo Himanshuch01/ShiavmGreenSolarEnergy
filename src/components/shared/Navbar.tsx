@@ -55,10 +55,13 @@ export default function Navbar() {
           <img 
             src="/logoo.png" 
             alt="Shivam GreenSolar Energy Logo" 
-            className="h-12 w-auto group-hover:scale-105 transition-transform"
+            className="h-10 sm:h-12 w-auto group-hover:scale-105 transition-transform"
           />
-          <span className="font-display font-bold text-xl text-foreground">
+          <span className="font-display font-bold text-base sm:text-xl text-foreground hidden min-[375px]:inline">
             Shivam <span className="text-primary">GreenSolar</span> Energy
+          </span>
+          <span className="font-display font-bold text-base sm:text-xl text-foreground min-[375px]:hidden">
+            <span className="text-primary">SG</span> Energy
           </span>
         </Link>
 

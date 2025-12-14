@@ -154,31 +154,31 @@ export default function Contact() {
         {/* Contact Section */}
         <section className="section-padding">
           <div className="container-custom">
-            <div className="grid lg:grid-cols-3 gap-12">
+            <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
               {/* Contact Info */}
               <AnimatedSection direction="left" className="lg:col-span-1">
-                <div className="space-y-6">
-                  <h2 className="font-display text-2xl font-bold mb-6">
+                <div className="space-y-4 sm:space-y-6">
+                  <h2 className="font-display text-xl sm:text-2xl font-bold mb-4 sm:mb-6">
                     Get in Touch
                   </h2>
                   
                   {contactInfo.map((info) => (
-                    <div key={info.title} className="glass-card p-6">
-                      <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                          <info.icon className="w-6 h-6 text-primary" />
+                    <div key={info.title} className="glass-card p-4 sm:p-6">
+                      <div className="flex items-start gap-3 sm:gap-4">
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                          <info.icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
                         </div>
-                        <div>
-                          <h3 className="font-semibold mb-1">{info.title}</h3>
+                        <div className="min-w-0 flex-1">
+                          <h3 className="font-semibold mb-1 text-sm sm:text-base">{info.title}</h3>
                           {info.link ? (
                             <a
                               href={info.link}
-                              className="text-muted-foreground hover:text-primary transition-colors"
+                              className="text-muted-foreground hover:text-primary transition-colors text-sm sm:text-base break-words"
                             >
                               {info.content}
                             </a>
                           ) : (
-                            <p className="text-muted-foreground">{info.content}</p>
+                            <p className="text-muted-foreground text-sm sm:text-base">{info.content}</p>
                           )}
                         </div>
                       </div>
@@ -189,16 +189,16 @@ export default function Contact() {
 
               {/* Contact Form */}
               <AnimatedSection direction="right" className="lg:col-span-2">
-                <div className="glass-card p-8 md:p-12">
-                  <h2 className="font-display text-2xl font-bold mb-2">
+                <div className="glass-card p-6 sm:p-8 md:p-12">
+                  <h2 className="font-display text-xl sm:text-2xl font-bold mb-2">
                     Send us a Message
                   </h2>
-                  <p className="text-muted-foreground mb-8">
+                  <p className="text-muted-foreground mb-6 sm:mb-8 text-sm sm:text-base">
                     Fill out the form below and we'll get back to you within 24 hours.
                   </p>
 
-                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                    <div className="grid md:grid-cols-2 gap-6">
+                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                       <div className="space-y-2">
                         <Label htmlFor="name">Full Name *</Label>
                         <Input
@@ -227,7 +227,7 @@ export default function Contact() {
                       </div>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                       <div className="space-y-2">
                         <Label htmlFor="phone">Phone Number *</Label>
                         <Input
@@ -306,7 +306,7 @@ export default function Contact() {
         </section>
 
         {/* Map Section */}
-        <section id="map" className="h-96 w-full">
+        <section id="map" className="h-64 sm:h-80 md:h-96 w-full">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.2345678901234!2d80.9462!3d26.8467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfd991f32b16b%3A0x93fba75b0a4b026a!2sKalyanpur%2C%20Lucknow%2C%20Uttar%20Pradesh%20226022!5e0!3m2!1sen!2sin!4v1703000000000!5m2!1sen!2sin"
             width="100%"

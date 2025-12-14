@@ -58,41 +58,41 @@ export default function Footer() {
       </div>
 
       {/* Main Footer */}
-      <div className="container-custom pb-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+      <div className="container-custom pb-8 sm:pb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10">
           {/* Brand Column */}
-          <div className="lg:col-span-2">
-            <Link to="/" className="flex items-center gap-2 mb-6">
+          <div className="sm:col-span-2 lg:col-span-2">
+            <Link to="/" className="flex items-center gap-2 mb-4 sm:mb-6">
               <img 
                 src="/logoo.png" 
                 alt="Shivam GreenSolar Energy Logo" 
-                className="h-10 w-auto"
+                className="h-8 sm:h-10 w-auto"
               />
-              <span className="font-display font-bold text-xl">
+              <span className="font-display font-bold text-lg sm:text-xl">
                 Shivam <span className="text-primary">GreenSolar</span> Energy
               </span>
             </Link>
-            <p className="text-background/70 mb-6 max-w-sm">
+            <p className="text-background/70 mb-4 sm:mb-6 max-w-sm text-sm sm:text-base">
               Leading the renewable energy revolution with innovative solar solutions 
               for homes, businesses, and industries. Power your future sustainably.
             </p>
-            <div className="space-y-3">
+            <div className="space-y-2 sm:space-y-3">
               <a
                 href="mailto:info@shivamgreensolar.com"
-                className="flex items-center gap-3 text-background/70 hover:text-primary transition-colors"
+                className="flex items-center gap-2 sm:gap-3 text-background/70 hover:text-primary transition-colors text-sm sm:text-base break-words"
               >
-                <Mail className="w-5 h-5" />
+                <Mail className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
                 <span>info@shivamgreensolar.com</span>
               </a>
               <a
                 href="tel:+1234567890"
-                className="flex items-center gap-3 text-background/70 hover:text-primary transition-colors"
+                className="flex items-center gap-2 sm:gap-3 text-background/70 hover:text-primary transition-colors text-sm sm:text-base"
               >
-                <Phone className="w-5 h-5" />
+                <Phone className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
                 <span>+1 (234) 567-890</span>
               </a>
-              <div className="flex items-start gap-3 text-background/70">
-                <MapPin className="w-5 h-5 mt-0.5" />
+              <div className="flex items-start gap-2 sm:gap-3 text-background/70 text-sm sm:text-base">
+                <MapPin className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 shrink-0" />
                 <span>Kalyanpur west, Lucknow 226022</span>
               </div>
             </div>

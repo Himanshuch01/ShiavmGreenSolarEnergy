@@ -86,17 +86,17 @@ export default function Services() {
                   key={service.title}
                   direction={index % 2 === 0 ? "left" : "right"}
                 >
-                  <div className={`grid lg:grid-cols-2 gap-12 items-center ${
+                  <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center ${
                     index % 2 !== 0 ? "lg:flex-row-reverse" : ""
                   }`}>
                     <div className={index % 2 !== 0 ? "lg:order-2" : ""}>
-                      <div className="w-16 h-16 rounded-2xl bg-solar-gradient shadow-glow flex items-center justify-center mb-6">
-                        <service.icon className="w-8 h-8 text-primary-foreground" />
+                      <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-solar-gradient shadow-glow flex items-center justify-center mb-4 sm:mb-6">
+                        <service.icon className="w-7 h-7 sm:w-8 sm:h-8 text-primary-foreground" />
                       </div>
-                      <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
+                      <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4">
                         {service.title}
                       </h2>
-                      <p className="text-lg text-muted-foreground mb-6">
+                      <p className="text-base sm:text-lg text-muted-foreground mb-4 sm:mb-6">
                         {service.description}
                       </p>
                       <ul className="space-y-3 mb-8">
@@ -116,10 +116,10 @@ export default function Services() {
                         </Link>
                       </Button>
                     </div>
-                    <div className={`glass-card p-8 aspect-video flex items-center justify-center ${
+                    <div className={`glass-card p-6 sm:p-8 aspect-video flex items-center justify-center ${
                       index % 2 !== 0 ? "lg:order-1" : ""
                     }`}>
-                      <service.icon className="w-32 h-32 text-primary/20" />
+                      <service.icon className="w-24 h-24 sm:w-32 sm:h-32 text-primary/20" />
                     </div>
                   </div>
                 </AnimatedSection>

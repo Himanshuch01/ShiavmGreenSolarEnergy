@@ -168,19 +168,19 @@ export default function Calculator() {
           <div className="container-custom">
             <div className="max-w-4xl mx-auto">
               <AnimatedSection>
-                <div className="glass-card p-8 md:p-12">
-                  <div className="flex items-center gap-4 mb-8">
-                    <div className="w-14 h-14 rounded-xl bg-solar-gradient shadow-glow flex items-center justify-center">
+                <div className="glass-card p-6 sm:p-8 md:p-12">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-8">
+                    <div className="w-14 h-14 rounded-xl bg-solar-gradient shadow-glow flex items-center justify-center shrink-0">
                       <CalcIcon className="w-7 h-7 text-primary-foreground" />
                     </div>
                     <div>
-                      <h2 className="font-display text-2xl font-bold">Solar Savings Calculator</h2>
-                      <p className="text-muted-foreground">Enter your details below</p>
+                      <h2 className="font-display text-xl sm:text-2xl font-bold">Solar Savings Calculator</h2>
+                      <p className="text-muted-foreground text-sm sm:text-base">Enter your details below</p>
                     </div>
                   </div>
 
                   <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                    <div className="grid md:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                       <div className="space-y-2">
                         <Label htmlFor="monthlyBill">Monthly Electricity Bill (₹)</Label>
                         <Input
@@ -214,7 +214,7 @@ export default function Calculator() {
                         )}
                       </div>
 
-                      <div className="space-y-2">
+                      <div className="space-y-2 sm:col-span-2 lg:col-span-1">
                         <Label htmlFor="rooftopSize">Rooftop Area (sq ft)</Label>
                         <Input
                           id="rooftopSize"
@@ -247,12 +247,12 @@ export default function Calculator() {
                     transition={{ duration: 0.5 }}
                     className="mt-8"
                   >
-                    <div className="glass-card p-8 md:p-12">
-                      <h3 className="font-display text-2xl font-bold mb-8 text-center">
+                    <div className="glass-card p-6 sm:p-8 md:p-12">
+                      <h3 className="font-display text-xl sm:text-2xl font-bold mb-6 sm:mb-8 text-center">
                         Your Solar Estimate
                       </h3>
 
-                      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
                         <div className="glass-card p-6 text-center">
                           <Sun className="w-10 h-10 text-primary mx-auto mb-3" />
                           <p className="text-3xl font-display font-bold text-primary">
@@ -278,7 +278,7 @@ export default function Calculator() {
                         </div>
                       </div>
 
-                      <div className="grid sm:grid-cols-3 gap-6 mb-8">
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
                         <div className="text-center p-4 rounded-xl bg-muted">
                           <p className="font-display font-bold text-xl">
                             {results.paybackPeriod} Years

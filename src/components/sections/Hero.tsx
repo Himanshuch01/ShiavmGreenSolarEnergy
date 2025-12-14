@@ -20,8 +20,8 @@ export default function Hero() {
         />
       </div>
 
-      <div className="container-custom relative z-10 pt-32 pb-20">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="container-custom relative z-10 pt-24 sm:pt-32 pb-12 sm:pb-20">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Content */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -38,17 +38,17 @@ export default function Hero() {
               <span>India's Leading Solar Solutions Provider</span>
             </motion.div>
 
-            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+            <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 sm:mb-6">
               Power Your Future with{" "}
               <span className="text-gradient">Clean Solar Energy</span>
             </h1>
 
-            <p className="text-lg text-muted-foreground mb-8 max-w-lg">
+            <p className="text-base sm:text-lg text-muted-foreground mb-6 sm:mb-8 max-w-lg">
               Transform your home or business with sustainable solar solutions. 
               Reduce energy costs by up to 90% while contributing to a greener planet.
             </p>
 
-            <div className="flex flex-wrap gap-4 mb-12">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mb-8 sm:mb-12">
               <Button variant="hero" size="xl" asChild>
                 <Link to="/contact" className="group">
                   Get Free Quote
@@ -63,23 +63,23 @@ export default function Hero() {
             </div>
 
             {/* Trust badges */}
-            <div className="flex flex-wrap items-center gap-6">
+            <div className="flex flex-wrap items-center gap-4 sm:gap-6">
               <div className="flex items-center gap-2">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Zap className="w-6 h-6 text-primary" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Zap className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
                 </div>
                 <div>
-                  <p className="font-semibold">10,000+</p>
-                  <p className="text-sm text-muted-foreground">Installations</p>
+                  <p className="font-semibold text-sm sm:text-base">10,000+</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground">Installations</p>
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center">
-                  <Leaf className="w-6 h-6 text-secondary" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-secondary/10 flex items-center justify-center">
+                  <Leaf className="w-5 h-5 sm:w-6 sm:h-6 text-secondary" />
                 </div>
                 <div>
-                  <p className="font-semibold">50M+</p>
-                  <p className="text-sm text-muted-foreground">kg CO₂ Saved</p>
+                  <p className="font-semibold text-sm sm:text-base">50M+</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground">kg CO₂ Saved</p>
                 </div>
               </div>
             </div>

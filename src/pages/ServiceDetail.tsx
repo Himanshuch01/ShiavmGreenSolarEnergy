@@ -207,14 +207,14 @@ export default function ServiceDetail() {
               </h2>
             </AnimatedSection>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-5xl mx-auto">
               {service.benefits.map((benefit, index) => (
                 <AnimatedSection key={benefit} delay={index * 0.1}>
-                  <div className="glass-card p-6 flex items-start gap-4 h-full hover-lift">
-                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                      <Check className="w-4 h-4 text-primary" />
+                  <div className="glass-card p-4 sm:p-6 flex items-start gap-3 sm:gap-4 h-full hover-lift">
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                      <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-primary" />
                     </div>
-                    <p className="font-medium">{benefit}</p>
+                    <p className="font-medium text-sm sm:text-base">{benefit}</p>
                   </div>
                 </AnimatedSection>
               ))}
@@ -234,18 +234,18 @@ export default function ServiceDetail() {
               </h2>
             </AnimatedSection>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
               {service.process.map((step, index) => (
                 <AnimatedSection key={step.step} delay={index * 0.1}>
                   <div className="relative">
-                    <div className="glass-card p-6 h-full">
-                      <div className="w-12 h-12 rounded-xl bg-solar-gradient shadow-glow flex items-center justify-center mb-4 font-display font-bold text-primary-foreground text-lg">
+                    <div className="glass-card p-5 sm:p-6 h-full">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-solar-gradient shadow-glow flex items-center justify-center mb-3 sm:mb-4 font-display font-bold text-primary-foreground text-base sm:text-lg">
                         {step.step}
                       </div>
-                      <h3 className="font-display font-semibold text-lg mb-2">
+                      <h3 className="font-display font-semibold text-base sm:text-lg mb-2">
                         {step.title}
                       </h3>
-                      <p className="text-muted-foreground text-sm">
+                      <p className="text-muted-foreground text-xs sm:text-sm">
                         {step.description}
                       </p>
                     </div>

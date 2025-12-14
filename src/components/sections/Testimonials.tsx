@@ -73,26 +73,26 @@ export default function Testimonials() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -50 }}
               transition={{ duration: 0.3 }}
-              className="glass-card p-8 md:p-12"
+              className="glass-card p-6 sm:p-8 md:p-12"
             >
-              <Quote className="w-12 h-12 text-primary/20 mb-6" />
+              <Quote className="w-10 h-10 sm:w-12 sm:h-12 text-primary/20 mb-4 sm:mb-6" />
               
-              <p className="text-xl md:text-2xl text-foreground mb-8 leading-relaxed">
+              <p className="text-lg sm:text-xl md:text-2xl text-foreground mb-6 sm:mb-8 leading-relaxed">
                 "{testimonials[currentIndex].content}"
               </p>
 
-              <div className="flex items-center justify-between flex-wrap gap-4">
-                <div className="flex items-center gap-4">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div className="flex items-center gap-3 sm:gap-4">
                   <img
                     src={testimonials[currentIndex].image}
                     alt={testimonials[currentIndex].name}
-                    className="w-14 h-14 rounded-full object-cover ring-2 ring-primary/20"
+                    className="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover ring-2 ring-primary/20 shrink-0"
                   />
                   <div>
-                    <p className="font-display font-semibold text-lg">
+                    <p className="font-display font-semibold text-base sm:text-lg">
                       {testimonials[currentIndex].name}
                     </p>
-                    <p className="text-muted-foreground">
+                    <p className="text-muted-foreground text-sm sm:text-base">
                       {testimonials[currentIndex].role}
                     </p>
                   </div>
