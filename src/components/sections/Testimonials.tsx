@@ -1,53 +1,111 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Star, Quote } from "lucide-react";
 import AnimatedSection from "@/components/shared/AnimatedSection";
-
-const testimonials = [
-  {
-    id: 1,
-    name: "Rajesh Kumar",
-    role: "Homeowner, Mumbai",
-    content: "Installing solar panels was the best decision for our home. We've reduced our electricity bill by 85% and the team's professionalism was exceptional. Highly recommend Shivam GreenSolar Energy!",
-    rating: 5,
-    image: "https://randomuser.me/api/portraits/men/32.jpg",
-  },
-  {
-    id: 2,
-    name: "Priya Sharma",
-    role: "Business Owner, Delhi",
-    content: "Our commercial solar installation has been running flawlessly for 3 years. The ROI exceeded our expectations and the support team is always responsive. A+ service!",
-    rating: 5,
-    image: "https://randomuser.me/api/portraits/women/44.jpg",
-  },
-  {
-    id: 3,
-    name: "Amit Patel",
-    role: "Factory Owner, Gujarat",
-    content: "The industrial solar setup has transformed our manufacturing facility. Energy costs down by 70% and we're now proudly running on clean energy. Great work team!",
-    rating: 5,
-    image: "https://randomuser.me/api/portraits/men/52.jpg",
-  },
-  {
-    id: 4,
-    name: "Sneha Reddy",
-    role: "Architect, Bangalore",
-    content: "As someone who values sustainability, I'm thrilled with my solar rooftop. The installation was seamless and the results are amazing. Our home is now energy independent!",
-    rating: 5,
-    image: "https://randomuser.me/api/portraits/women/68.jpg",
-  },
-];
+import { supabase, Testimonial } from "@/lib/supabase";
 
 export default function Testimonials() {
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    fetchTestimonials();
+  }, []);
+
+  const fetchTestimonials = async () => {
+    try {
+      setIsLoading(true);
+      const { data, error } = await supabase
+        .from("testimonials")
+        .select("*")
+        .eq("is_approved", true)
+        .order("created_at", { ascending: false });
+
+      if (error) throw error;
+
+      setTestimonials(data || []);
+    } catch (error: any) {
+      console.error("Error fetching testimonials:", error);
+      // Fallback to empty array if there's an error
+      setTestimonials([]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const next = () => {
+    if (testimonials.length === 0) return;
     setCurrentIndex((prev) => (prev + 1) % testimonials.length);
   };
 
   const prev = () => {
+    if (testimonials.length === 0) return;
     setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
+
+  // Default avatar if no image provided
+  const getAvatarUrl = (testimonial: Testimonial) => {
+    if (testimonial.image_url) return testimonial.image_url;
+    // Generate a default avatar based on name initials
+    const initials = testimonial.name
+      .split(" ")
+      .map((n) => n[0])
+      .join("")
+      .toUpperCase()
+      .slice(0, 2);
+    return `https://ui-avatars.com/api/?name=${encodeURIComponent(initials)}&background=random&size=128`;
+  };
+
+  if (isLoading) {
+    return (
+      <section className="section-padding overflow-hidden">
+        <div className="container-custom">
+          <AnimatedSection className="text-center max-w-3xl mx-auto mb-16">
+            <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+              Testimonials
+            </span>
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+              What Our{" "}
+              <span className="text-gradient">Customers Say</span>
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Join thousands of satisfied customers who have made the switch to solar energy.
+            </p>
+          </AnimatedSection>
+          <div className="text-center py-12">
+            <p className="text-muted-foreground">Loading testimonials...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (testimonials.length === 0) {
+    return (
+      <section className="section-padding overflow-hidden">
+        <div className="container-custom">
+          <AnimatedSection className="text-center max-w-3xl mx-auto mb-16">
+            <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+              Testimonials
+            </span>
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+              What Our{" "}
+              <span className="text-gradient">Customers Say</span>
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Be the first to share your experience with Shivam GreenSolar Energy!
+            </p>
+          </AnimatedSection>
+          <div className="text-center py-12">
+            <p className="text-muted-foreground">
+              No testimonials yet. Check back soon or share your experience!
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="section-padding overflow-hidden">
@@ -84,9 +142,20 @@ export default function Testimonials() {
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div className="flex items-center gap-3 sm:gap-4">
                   <img
-                    src={testimonials[currentIndex].image}
+                    src={getAvatarUrl(testimonials[currentIndex])}
                     alt={testimonials[currentIndex].name}
                     className="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover ring-2 ring-primary/20 shrink-0"
+                    onError={(e) => {
+                      // Fallback to initials avatar if image fails to load
+                      const target = e.target as HTMLImageElement;
+                      const initials = testimonials[currentIndex].name
+                        .split(" ")
+                        .map((n) => n[0])
+                        .join("")
+                        .toUpperCase()
+                        .slice(0, 2);
+                      target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(initials)}&background=random&size=128`;
+                    }}
                   />
                   <div>
                     <p className="font-display font-semibold text-base sm:text-lg">
@@ -99,7 +168,7 @@ export default function Testimonials() {
                 </div>
 
                 <div className="flex gap-1">
-                  {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
+                  {[...Array(testimonials[currentIndex].rating || 5)].map((_, i) => (
                     <Star
                       key={i}
                       className="w-5 h-5 fill-accent text-accent"

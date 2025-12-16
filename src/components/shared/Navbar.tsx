@@ -126,7 +126,7 @@ export default function Navbar() {
             className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             <Phone className="w-4 h-4" />
-            <span>+91 9511048844</span>
+            <span>+91 8009430952</span>
           </a>
           <Button variant="hero" size="lg" asChild>
             <Link to="/contact">Get Free Quote</Link>

@@ -16,11 +16,15 @@ const timeline = [
 ];
 
 const team = [
-  { name: "Shivam Chauhan", role: "Founder & SEO", image: "" },
+  {
+    name: "Shivam Chauhan",
+    role: "Founder & SEO",
+    image: "#",
+  },
 ];
 
 const certifications = [
-  "MNRE Approved",
+  
   "ISO 9001:2015",
   "ISO 14001:2015",
   "BIS Certified",
@@ -34,7 +38,7 @@ export default function About() {
         <title>About Us - Shivam GreenSolar Energy | India's Trusted Solar Energy Company</title>
         <meta
           name="description"
-          content="Learn about Shivam GreenSolar Energy's mission to make sustainable solar energy accessible. With 15+ years of experience and 10,000+ installations across India."
+          content="Learn about Shivam GreenSolar Energy's mission to make sustainable solar energy accessible. With 6 months of experience and 150+ installations across India."
         />
       </Helmet>
 
@@ -53,7 +57,7 @@ export default function About() {
                 <span className="text-gradient">Sustainable Future</span>
               </h1>
               <p className="text-lg text-muted-foreground">
-                For over 15 years, we've been at the forefront of India's renewable energy 
+                For over 6 months, we've been at the forefront of India's renewable energy 
                 revolution, making solar power accessible, affordable, and efficient for 
                 homes, businesses, and industries.
               </p>
@@ -107,7 +111,7 @@ export default function About() {
                   Our Journey
                 </span>
                 <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
-                  15+ Years of{" "}
+                  6 months of{" "}
                   <span className="text-gradient">Solar Excellence</span>
                 </h2>
               </AnimatedSection>
@@ -146,7 +150,7 @@ export default function About() {
           </section>
         )}
 
-        {/* Team Section */}
+        {/* Team Section
         <section id="team" className="section-padding">
           <div className="container-custom">
             <AnimatedSection className="text-center max-w-3xl mx-auto mb-16">
@@ -167,11 +171,22 @@ export default function About() {
                 <AnimatedSection key={member.name} delay={index * 0.1}>
                   <div className="glass-card p-4 sm:p-6 text-center group">
                     <div className="relative w-24 h-24 sm:w-32 sm:h-32 mx-auto mb-4 sm:mb-6">
-                      <img
-                        src={member.image}
-                        alt={member.name}
-                        className="w-full h-full rounded-full object-cover ring-4 ring-primary/10 group-hover:ring-primary/30 transition-all"
-                      />
+                      {member.image ? (
+                        <img
+                          src={member.image}
+                          alt={member.name}
+                          className="w-full h-full rounded-full object-cover ring-4 ring-primary/10 group-hover:ring-primary/30 transition-all"
+                        />
+                      ) : (
+                        <div className="w-full h-full rounded-full bg-primary/10 flex items-center justify-center ring-4 ring-primary/10">
+                          <span className="font-display text-lg">
+                            {member.name
+                              .split(" ")
+                              .map((n) => n[0])
+                              .join("")}
+                          </span>
+                        </div>
+                      )}
                       <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                         <a
                           href="#"
@@ -194,7 +209,7 @@ export default function About() {
               ))}
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Certifications */}
         <section className="section-padding bg-muted">

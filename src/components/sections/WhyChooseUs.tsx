@@ -7,11 +7,11 @@ const features = [
     title: "25 Years Warranty",
     description: "Industry-leading warranty on all our solar panels and installations.",
   },
-  {
-    icon: BadgeCheck,
-    title: "MNRE Certified",
-    description: "Government approved and certified solar solutions provider.",
-  },
+  // {
+  //   icon: BadgeCheck,
+  //   title: "MNRE Certified",
+  //   description: "Government approved and certified solar solutions provider.",
+  // },
   {
     icon: Clock,
     title: "Quick Installation",
@@ -46,7 +46,7 @@ export default function WhyChooseUs() {
               </span>
               <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
                 Trusted by{" "}
-                <span className="text-gradient">15,000+ Customers</span>{" "}
+                <span className="text-gradient">120+ Customers</span>{" "}
                 Across India
               </h2>
               <p className="text-lg text-muted-foreground mb-8">

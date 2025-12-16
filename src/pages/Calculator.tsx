@@ -25,17 +25,47 @@ const calculatorSchema = z.object({
 type CalculatorForm = z.infer<typeof calculatorSchema>;
 
 const cities = [
-  { name: "Mumbai", factor: 4.5 },
-  { name: "Delhi", factor: 5.0 },
-  { name: "Bangalore", factor: 4.8 },
-  { name: "Chennai", factor: 5.2 },
-  { name: "Hyderabad", factor: 5.0 },
-  { name: "Ahmedabad", factor: 5.3 },
-  { name: "Kolkata", factor: 4.2 },
-  { name: "Pune", factor: 4.7 },
-  { name: "Jaipur", factor: 5.5 },
-  { name: "Lucknow", factor: 4.8 },
+  { name: "Mumbai", factor: 4.5, state: "Maharashtra" },
+  { name: "Delhi", factor: 5.0, state: "Delhi" },
+  { name: "Bangalore", factor: 4.8, state: "Karnataka" },
+  { name: "Chennai", factor: 5.2, state: "Tamil Nadu" },
+  { name: "Hyderabad", factor: 5.0, state: "Telangana" },
+  { name: "Ahmedabad", factor: 5.3, state: "Gujarat" },
+  { name: "Kolkata", factor: 4.2, state: "West Bengal" },
+  { name: "Pune", factor: 4.7, state: "Maharashtra" },
+  { name: "Jaipur", factor: 5.5, state: "Rajasthan" },
+  { name: "Lucknow", factor: 4.8, state: "Uttar Pradesh" },
 ];
+
+// Subsidy structure based on system capacity
+const getSubsidy = (systemSize: number, state: string) => {
+  let centralSubsidy = 0;
+  let stateSubsidy = 0;
+
+  if (systemSize >= 1 && systemSize < 2) {
+    centralSubsidy = 30000;
+    stateSubsidy = state === "Uttar Pradesh" ? 15000 : 0;
+  } else if (systemSize >= 2 && systemSize < 3) {
+    centralSubsidy = 60000;
+    stateSubsidy = state === "Uttar Pradesh" ? 30000 : 0;
+  } else if (systemSize >= 3 && systemSize < 4) {
+    centralSubsidy = 78000;
+    stateSubsidy = state === "Uttar Pradesh" ? 30000 : 0;
+  } else if (systemSize >= 4 && systemSize <= 10) {
+    centralSubsidy = 78000;
+    stateSubsidy = state === "Uttar Pradesh" ? 30000 : 0;
+  } else {
+    // For systems > 10kW, no subsidy
+    centralSubsidy = 0;
+    stateSubsidy = 0;
+  }
+
+  return {
+    central: centralSubsidy,
+    state: stateSubsidy,
+    total: centralSubsidy + stateSubsidy,
+  };
+};
 
 interface Results {
   systemSize: number;
@@ -68,6 +98,7 @@ export default function Calculator() {
   const onSubmit = async (data: CalculatorForm) => {
     const cityData = cities.find((c) => c.name === data.city);
     const sunHours = cityData?.factor || 4.5;
+    const state = cityData?.state || "Uttar Pradesh";
 
     // Calculate system size based on bill (assuming ₹8 per unit)
     const monthlyUnits = data.monthlyBill / 8;
@@ -78,31 +109,36 @@ export default function Calculator() {
     const maxSystemByRoof = Math.floor(data.rooftopSize / 100);
     const finalSystemSize = Math.min(systemSize, maxSystemByRoof);
 
-    // Cost calculation (₹50,000 per kW average)
-    const estimatedCost = finalSystemSize * 50000;
+    // Approximate cost calculation (varies between ₹45,000 - ₹60,000 per kW)
+    // Using average of ₹52,500 per kW as approximation
+    const costPerKw = 52500;
+    const estimatedCost = finalSystemSize * costPerKw;
 
-    // Subsidy (40% for first 3kW, 20% for next 7kW)
-    let subsidy = 0;
-    if (finalSystemSize <= 3) {
-      subsidy = estimatedCost * 0.4;
-    } else if (finalSystemSize <= 10) {
-      subsidy = 3 * 50000 * 0.4 + (finalSystemSize - 3) * 50000 * 0.2;
-    } else {
-      subsidy = 3 * 50000 * 0.4 + 7 * 50000 * 0.2;
-    }
+    // Get subsidy based on system size and state
+    const subsidy = getSubsidy(finalSystemSize, state);
 
-    const netCost = estimatedCost - subsidy;
-    const annualSavings = data.monthlyBill * 12 * 0.85; // 85% savings
-    const paybackPeriod = netCost / annualSavings;
-    const co2Reduction = finalSystemSize * 1500; // 1500 kg per kW per year
+    // Approximate cost after subsidy
+    const approxCostAfterSubsidy = estimatedCost - subsidy.total;
+    
+    // Annual savings (approximately 85% of current bill)
+    const annualSavings = data.monthlyBill * 12 * 0.85;
+    
+    // Approximate payback period
+    const paybackPeriod = approxCostAfterSubsidy / annualSavings;
+    
+    // CO2 reduction (approximately 1500 kg per kW per year)
+    const co2Reduction = finalSystemSize * 1500;
 
     const calculatedResults = {
       systemSize: finalSystemSize,
-      estimatedCost: netCost,
+      estimatedCost: Math.round(estimatedCost),
+      approxCostAfterSubsidy: Math.round(approxCostAfterSubsidy),
       annualSavings: Math.round(annualSavings),
       paybackPeriod: Math.round(paybackPeriod * 10) / 10,
-      co2Reduction: co2Reduction,
-      subsidyAmount: Math.round(subsidy),
+      co2Reduction: Math.round(co2Reduction),
+      subsidyAmount: subsidy.total,
+      centralSubsidy: subsidy.central,
+      stateSubsidy: subsidy.state,
     };
 
     setResults(calculatedResults);
@@ -118,7 +154,7 @@ export default function Calculator() {
             city: data.city,
             rooftop_size: data.rooftopSize,
             system_size: calculatedResults.systemSize,
-            estimated_cost: calculatedResults.estimatedCost,
+            estimated_cost: calculatedResults.approxCostAfterSubsidy,
             annual_savings: calculatedResults.annualSavings,
             payback_period: calculatedResults.paybackPeriod,
             co2_reduction: calculatedResults.co2Reduction,
@@ -258,15 +294,18 @@ export default function Calculator() {
                           <p className="text-3xl font-display font-bold text-primary">
                             <CountUp end={results.systemSize} suffix=" kW" />
                           </p>
-                          <p className="text-muted-foreground">Recommended System</p>
+                          <p className="text-muted-foreground">Approx. System Size</p>
                         </div>
 
                         <div className="glass-card p-6 text-center">
                           <IndianRupee className="w-10 h-10 text-secondary mx-auto mb-3" />
                           <p className="text-3xl font-display font-bold text-secondary">
-                            <CountUp end={results.estimatedCost} prefix="₹" />
+                            <CountUp end={results.approxCostAfterSubsidy} prefix="₹" />
                           </p>
-                          <p className="text-muted-foreground">Net Cost (After Subsidy)</p>
+                          <p className="text-muted-foreground">Approx. Cost (After Subsidy)</p>
+                          <p className="text-xs text-muted-foreground mt-2">
+                            Total: ₹{results.estimatedCost.toLocaleString()}
+                          </p>
                         </div>
 
                         <div className="glass-card p-6 text-center">
@@ -274,30 +313,43 @@ export default function Calculator() {
                           <p className="text-3xl font-display font-bold text-accent">
                             <CountUp end={results.annualSavings} prefix="₹" />
                           </p>
-                          <p className="text-muted-foreground">Annual Savings</p>
+                          <p className="text-muted-foreground">Approx. Annual Savings</p>
                         </div>
                       </div>
 
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
                         <div className="text-center p-4 rounded-xl bg-muted">
                           <p className="font-display font-bold text-xl">
-                            {results.paybackPeriod} Years
+                            ~{results.paybackPeriod} Years
                           </p>
-                          <p className="text-sm text-muted-foreground">Payback Period</p>
+                          <p className="text-sm text-muted-foreground">Approx. Payback Period</p>
                         </div>
                         <div className="text-center p-4 rounded-xl bg-muted">
                           <p className="font-display font-bold text-xl">
                             ₹{results.subsidyAmount.toLocaleString()}
                           </p>
-                          <p className="text-sm text-muted-foreground">Govt Subsidy</p>
+                          <p className="text-sm text-muted-foreground">
+                            Total Subsidy
+                            {results.stateSubsidy > 0 && (
+                              <span className="block text-xs mt-1">
+                                (Central: ₹{results.centralSubsidy.toLocaleString()} + State: ₹{results.stateSubsidy.toLocaleString()})
+                              </span>
+                            )}
+                          </p>
                         </div>
                         <div className="text-center p-4 rounded-xl bg-muted">
                           <p className="font-display font-bold text-xl flex items-center justify-center gap-1">
                             <Leaf className="w-5 h-5 text-primary" />
-                            {results.co2Reduction.toLocaleString()} kg
+                            ~{results.co2Reduction.toLocaleString()} kg
                           </p>
-                          <p className="text-sm text-muted-foreground">CO₂ Reduced/Year</p>
+                          <p className="text-sm text-muted-foreground">Approx. CO₂ Reduced/Year</p>
                         </div>
+                      </div>
+                      
+                      <div className="mb-6 p-4 rounded-lg bg-primary/5 border border-primary/20">
+                        <p className="text-sm text-muted-foreground text-center">
+                          <strong className="text-foreground">Note:</strong> All values are approximate and may vary based on actual system requirements, installation conditions, and current market rates. Final pricing will be provided after site inspection.
+                        </p>
                       </div>
 
                       <div className="text-center">

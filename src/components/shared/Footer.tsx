@@ -85,11 +85,13 @@ export default function Footer() {
                 <span>info@shivamgreensolar.com</span>
               </a>
               <a
-                href="tel:+919511048844"
+                href="tel:+918009430952"
                 className="flex items-center gap-2 sm:gap-3 text-background/70 hover:text-primary transition-colors text-sm sm:text-base"
               >
                 <Phone className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
-                <span>+91 9511048844</span>
+                <span>+91 8009430952</span>
+                 <br />
+                <span>+91 8400713758</span>
               </a>
               <div className="flex items-start gap-2 sm:gap-3 text-background/70 text-sm sm:text-base">
                 <MapPin className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 shrink-0" />

@@ -33,11 +33,27 @@ CREATE TABLE IF NOT EXISTS calculator_results (
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
+-- Testimonials Table
+-- Stores customer reviews and testimonials
+CREATE TABLE IF NOT EXISTS testimonials (
+  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  name VARCHAR(100) NOT NULL,
+  role VARCHAR(200) NOT NULL,
+  content TEXT NOT NULL,
+  rating INTEGER NOT NULL CHECK (rating >= 1 AND rating <= 5),
+  image_url VARCHAR(500),
+  is_approved BOOLEAN DEFAULT false,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
 -- Create indexes for better query performance
 CREATE INDEX IF NOT EXISTS idx_contact_inquiries_created_at ON contact_inquiries(created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_contact_inquiries_email ON contact_inquiries(email);
 CREATE INDEX IF NOT EXISTS idx_calculator_results_created_at ON calculator_results(created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_calculator_results_city ON calculator_results(city);
+CREATE INDEX IF NOT EXISTS idx_testimonials_created_at ON testimonials(created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_testimonials_approved ON testimonials(is_approved) WHERE is_approved = true;
 
 -- Create updated_at trigger function
 CREATE OR REPLACE FUNCTION update_updated_at_column()
@@ -48,15 +64,34 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+-- Drop existing triggers if they exist (for idempotency)
+DROP TRIGGER IF EXISTS update_contact_inquiries_updated_at ON contact_inquiries;
+DROP TRIGGER IF EXISTS update_testimonials_updated_at ON testimonials;
+
 -- Create trigger for updated_at
 CREATE TRIGGER update_contact_inquiries_updated_at
   BEFORE UPDATE ON contact_inquiries
   FOR EACH ROW
   EXECUTE FUNCTION update_updated_at_column();
 
+CREATE TRIGGER update_testimonials_updated_at
+  BEFORE UPDATE ON testimonials
+  FOR EACH ROW
+  EXECUTE FUNCTION update_updated_at_column();
+
 -- Enable Row Level Security (RLS)
 ALTER TABLE contact_inquiries ENABLE ROW LEVEL SECURITY;
 ALTER TABLE calculator_results ENABLE ROW LEVEL SECURITY;
+ALTER TABLE testimonials ENABLE ROW LEVEL SECURITY;
+
+-- Drop existing policies if they exist (for idempotency)
+DROP POLICY IF EXISTS "Allow public insert on contact_inquiries" ON contact_inquiries;
+DROP POLICY IF EXISTS "Allow authenticated read on contact_inquiries" ON contact_inquiries;
+DROP POLICY IF EXISTS "Allow public insert on calculator_results" ON calculator_results;
+DROP POLICY IF EXISTS "Allow authenticated read on calculator_results" ON calculator_results;
+DROP POLICY IF EXISTS "Allow public insert on testimonials" ON testimonials;
+DROP POLICY IF EXISTS "Allow public read approved testimonials" ON testimonials;
+DROP POLICY IF EXISTS "Allow authenticated read all testimonials" ON testimonials;
 
 -- Create policies for public insert (anonymous users can insert)
 -- Adjust these policies based on your security requirements
@@ -86,6 +121,27 @@ CREATE POLICY "Allow public insert on calculator_results"
 -- Policy: Allow authenticated users to read all calculator results
 CREATE POLICY "Allow authenticated read on calculator_results"
   ON calculator_results
+  FOR SELECT
+  TO authenticated
+  USING (true);
+
+-- Policy: Allow anyone to insert testimonials
+CREATE POLICY "Allow public insert on testimonials"
+  ON testimonials
+  FOR INSERT
+  TO anon, authenticated
+  WITH CHECK (true);
+
+-- Policy: Allow anyone to read approved testimonials
+CREATE POLICY "Allow public read approved testimonials"
+  ON testimonials
+  FOR SELECT
+  TO anon, authenticated
+  USING (is_approved = true);
+
+-- Policy: Allow authenticated users to read all testimonials (for admin)
+CREATE POLICY "Allow authenticated read all testimonials"
+  ON testimonials
   FOR SELECT
   TO authenticated
   USING (true);

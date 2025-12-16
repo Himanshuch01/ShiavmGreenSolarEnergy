@@ -14,6 +14,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/lib/supabase";
+import TestimonialForm from "@/components/sections/TestimonialForm";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters").max(100),
@@ -301,6 +302,28 @@ export default function Contact() {
                   </form>
                 </div>
               </AnimatedSection>
+            </div>
+          </div>
+        </section>
+
+        {/* Testimonial Form Section */}
+        <section className="section-padding bg-muted">
+          <div className="container-custom">
+            <AnimatedSection className="text-center max-w-3xl mx-auto mb-12">
+              <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+                Share Your Experience
+              </span>
+              <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
+                Leave a{" "}
+                <span className="text-gradient">Testimonial</span>
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Help others make informed decisions by sharing your experience with our solar solutions.
+              </p>
+            </AnimatedSection>
+
+            <div className="max-w-2xl mx-auto">
+              <TestimonialForm />
             </div>
           </div>
         </section>

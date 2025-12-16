@@ -5,30 +5,30 @@ import CountUp from "@/components/shared/CountUp";
 const stats = [
   {
     icon: Sun,
-    value: 10000,
+    value: 150,
     suffix: "+",
     label: "Solar Installations",
     description: "Across India",
   },
   {
     icon: Users,
-    value: 15000,
+    value: 120,
     suffix: "+",
     label: "Happy Customers",
     description: "And growing",
   },
   {
     icon: Leaf,
-    value: 50,
-    suffix: "M+",
+    value: 750,
+    suffix: "K+",
     label: "kg CO₂ Reduced",
     description: "Every year",
   },
   {
     icon: Award,
-    value: 15,
-    suffix: "+",
-    label: "Years Experience",
+    value: 6,
+    suffix: " months",
+    label: "Experience",
     description: "Industry leader",
   },
 ];

@@ -19,6 +19,7 @@ export default function CountUp({ end, duration = 2000, suffix = "", prefix = ""
     hasAnimated.current = true;
 
     let startTime: number;
+    const isDecimal = end % 1 !== 0;
     const animate = (timestamp: number) => {
       if (!startTime) startTime = timestamp;
       const progress = timestamp - startTime;
@@ -26,7 +27,8 @@ export default function CountUp({ end, duration = 2000, suffix = "", prefix = ""
       
       // Easing function for smooth animation
       const easeOutQuart = 1 - Math.pow(1 - percentage, 4);
-      setCount(Math.floor(easeOutQuart * end));
+      const currentValue = easeOutQuart * end;
+      setCount(isDecimal ? currentValue : Math.floor(currentValue));
 
       if (percentage < 1) {
         requestAnimationFrame(animate);
@@ -38,9 +40,11 @@ export default function CountUp({ end, duration = 2000, suffix = "", prefix = ""
     requestAnimationFrame(animate);
   }, [isInView, end, duration]);
 
+  const displayValue = count % 1 !== 0 ? count.toFixed(1) : count.toLocaleString();
+
   return (
     <span ref={ref}>
-      {prefix}{count.toLocaleString()}{suffix}
+      {prefix}{displayValue}{suffix}
     </span>
   );
 }

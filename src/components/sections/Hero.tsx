@@ -69,7 +69,7 @@ export default function Hero() {
                   <Zap className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
                 </div>
                 <div>
-                  <p className="font-semibold text-sm sm:text-base">10,000+</p>
+                  <p className="font-semibold text-sm sm:text-base">150+</p>
                   <p className="text-xs sm:text-sm text-muted-foreground">Installations</p>
                 </div>
               </div>
@@ -78,7 +78,7 @@ export default function Hero() {
                   <Leaf className="w-5 h-5 sm:w-6 sm:h-6 text-secondary" />
                 </div>
                 <div>
-                  <p className="font-semibold text-sm sm:text-base">50M+</p>
+                  <p className="font-semibold text-sm sm:text-base">750K+</p>
                   <p className="text-xs sm:text-sm text-muted-foreground">kg CO₂ Saved</p>
                 </div>
               </div>

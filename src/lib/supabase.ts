@@ -88,3 +88,15 @@ export interface CalculatorResult {
   created_at?: string;
 }
 
+export interface Testimonial {
+  id?: string;
+  name: string;
+  role: string;
+  content: string;
+  rating: number;
+  image_url?: string | null;
+  is_approved?: boolean;
+  created_at?: string;
+  updated_at?: string;
+}
+
