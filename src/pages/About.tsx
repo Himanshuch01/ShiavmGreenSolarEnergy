@@ -16,10 +16,7 @@ const timeline = [
 ];
 
 const team = [
-  { name: "Vikram Singh", role: "Founder & CEO", image: "https://randomuser.me/api/portraits/men/75.jpg" },
-  { name: "Anita Desai", role: "CTO", image: "https://randomuser.me/api/portraits/women/65.jpg" },
-  { name: "Rahul Mehta", role: "Head of Operations", image: "https://randomuser.me/api/portraits/men/45.jpg" },
-  { name: "Priya Nair", role: "Chief Sustainability Officer", image: "https://randomuser.me/api/portraits/women/55.jpg" },
+  { name: "Shivam Chauhan", role: "Founder & SEO", image: "" },
 ];
 
 const certifications = [
@@ -101,51 +98,53 @@ export default function About() {
           </div>
         </section>
 
-        {/* Timeline */}
-        <section className="section-padding bg-muted">
-          <div className="container-custom">
-            <AnimatedSection className="text-center max-w-3xl mx-auto mb-16">
-              <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-                Our Journey
-              </span>
-              <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
-                15+ Years of{" "}
-                <span className="text-gradient">Solar Excellence</span>
-              </h2>
-            </AnimatedSection>
+        {/* Timeline - temporarily hidden */}
+        {false && (
+          <section className="section-padding bg-muted">
+            <div className="container-custom">
+              <AnimatedSection className="text-center max-w-3xl mx-auto mb-16">
+                <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+                  Our Journey
+                </span>
+                <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
+                  15+ Years of{" "}
+                  <span className="text-gradient">Solar Excellence</span>
+                </h2>
+              </AnimatedSection>
 
-            <div className="relative max-w-4xl mx-auto">
-              {/* Timeline line */}
-              <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-primary/20 md:-translate-x-1/2" />
+              <div className="relative max-w-4xl mx-auto">
+                {/* Timeline line */}
+                <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-primary/20 md:-translate-x-1/2" />
 
-              {timeline.map((item, index) => (
-                <AnimatedSection
-                  key={item.year}
-                  delay={index * 0.1}
-                  className={`relative flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8 mb-8 md:mb-12 ${
-                    index % 2 === 0 ? "md:flex-row-reverse" : ""
-                  }`}
-                >
-                  <div className={`flex-1 w-full md:w-auto ${index % 2 === 0 ? "md:text-right" : ""}`}>
-                    <div className="glass-card p-4 sm:p-6 inline-block w-full md:w-auto">
-                      <span className="text-primary font-display font-bold text-xl sm:text-2xl">
-                        {item.year}
-                      </span>
-                      <h3 className="font-display font-semibold text-base sm:text-lg mt-2 mb-1">
-                        {item.title}
-                      </h3>
-                      <p className="text-muted-foreground text-xs sm:text-sm">{item.description}</p>
+                {timeline.map((item, index) => (
+                  <AnimatedSection
+                    key={item.year}
+                    delay={index * 0.1}
+                    className={`relative flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8 mb-8 md:mb-12 ${
+                      index % 2 === 0 ? "md:flex-row-reverse" : ""
+                    }`}
+                  >
+                    <div className={`flex-1 w-full md:w-auto ${index % 2 === 0 ? "md:text-right" : ""}`}>
+                      <div className="glass-card p-4 sm:p-6 inline-block w-full md:w-auto">
+                        <span className="text-primary font-display font-bold text-xl sm:text-2xl">
+                          {item.year}
+                        </span>
+                        <h3 className="font-display font-semibold text-base sm:text-lg mt-2 mb-1">
+                          {item.title}
+                        </h3>
+                        <p className="text-muted-foreground text-xs sm:text-sm">{item.description}</p>
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="absolute left-4 md:left-1/2 md:-translate-x-1/2 w-4 h-4 rounded-full bg-primary shadow-glow shrink-0" />
+                    <div className="absolute left-4 md:left-1/2 md:-translate-x-1/2 w-4 h-4 rounded-full bg-primary shadow-glow shrink-0" />
 
-                  <div className="flex-1 hidden md:block" />
-                </AnimatedSection>
-              ))}
+                    <div className="flex-1 hidden md:block" />
+                  </AnimatedSection>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         {/* Team Section */}
         <section id="team" className="section-padding">
