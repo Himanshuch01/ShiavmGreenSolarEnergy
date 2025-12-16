@@ -84,15 +84,22 @@ export default function Footer() {
                 <Mail className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
                 <span>info@shivamgreensolar.com</span>
               </a>
-              <a
-                href="tel:+918009430952"
-                className="flex items-center gap-2 sm:gap-3 text-background/70 hover:text-primary transition-colors text-sm sm:text-base"
-              >
-                <Phone className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
-                <span>+91 8009430952</span>
-                 <br />
-                <span>+91 8400713758</span>
-              </a>
+              <div className="flex flex-col gap-2 sm:gap-3">
+                <a
+                  href="tel:+918009430952"
+                  className="flex items-center gap-2 sm:gap-3 text-background/70 hover:text-primary transition-colors text-sm sm:text-base"
+                >
+                  <Phone className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
+                  <span>+91 8009430952</span>
+                </a>
+                <a
+                  href="tel:+918400713758"
+                  className="flex items-center gap-2 sm:gap-3 text-background/70 hover:text-primary transition-colors text-sm sm:text-base"
+                >
+                  <Phone className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
+                  <span>+91 8400713758</span>
+                </a>
+              </div>
               <div className="flex items-start gap-2 sm:gap-3 text-background/70 text-sm sm:text-base">
                 <MapPin className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 shrink-0" />
                 <span>Kalyanpur west, Lucknow 226022</span>

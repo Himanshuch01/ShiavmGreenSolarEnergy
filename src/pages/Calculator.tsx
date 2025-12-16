@@ -15,6 +15,9 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Link } from "react-router-dom";
 import { supabase } from "@/lib/supabase";
+import StructuredData from "@/components/seo/StructuredData";
+
+const baseUrl = "https://www.shivamgreensolarenergy.in";
 
 const calculatorSchema = z.object({
   monthlyBill: z.number().min(500, "Minimum bill should be ₹500").max(1000000, "Maximum bill is ₹10,00,000"),
@@ -170,12 +173,40 @@ export default function Calculator() {
   return (
     <>
       <Helmet>
+        <html lang="en" />
         <title>Solar Calculator - Shivam GreenSolar Energy | Calculate Your Solar Savings</title>
         <meta
           name="description"
-          content="Use our free solar calculator to estimate your solar system size, cost, and savings. Find out how much you can save with solar energy."
+          content="Use our free solar calculator to estimate your solar system size, cost, and savings. Calculate approximate installation cost, subsidy amount, payback period, and annual savings for your home or business in India."
         />
+        <meta
+          name="keywords"
+          content="solar calculator, solar savings calculator, solar cost calculator, solar ROI calculator, solar system size calculator, solar subsidy calculator India"
+        />
+        <link rel="canonical" href={`${baseUrl}/calculator`} />
+        
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`${baseUrl}/calculator`} />
+        <meta property="og:title" content="Solar Calculator - Calculate Your Solar Savings | Shivam GreenSolar Energy" />
+        <meta property="og:description" content="Use our free solar calculator to estimate your solar system size, cost, and savings. Find out how much you can save with solar energy." />
+        <meta property="og:image" content={`${baseUrl}/logoo1.png`} />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Solar Calculator - Shivam GreenSolar Energy" />
+        <meta name="twitter:description" content="Calculate your solar savings with our free calculator. Estimate system size, cost, and ROI." />
       </Helmet>
+      
+      <StructuredData
+        type="Service"
+        data={{
+          serviceType: "Solar Energy Calculator",
+          provider: organizationSchema,
+          areaServed: "IN",
+          description: "Free solar calculator to estimate system size, cost, savings, and payback period",
+        }}
+      />
 
       <Navbar />
       

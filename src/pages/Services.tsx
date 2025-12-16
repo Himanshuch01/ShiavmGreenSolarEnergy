@@ -5,6 +5,9 @@ import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import { Button } from "@/components/ui/button";
+import StructuredData, { organizationSchema } from "@/components/seo/StructuredData";
+
+const baseUrl = "https://www.shivamgreensolarenergy.in";
 
 const services = [
   {
@@ -48,12 +51,51 @@ export default function Services() {
   return (
     <>
       <Helmet>
+        <html lang="en" />
         <title>Solar Services - Shivam GreenSolar Energy | Residential, Commercial & Industrial Solutions</title>
         <meta
           name="description"
-          content="Explore Shivam GreenSolar Energy's comprehensive solar solutions including residential, commercial, industrial, rooftop, and maintenance services across India."
+          content="Explore Shivam GreenSolar Energy's comprehensive solar solutions including residential, commercial, industrial, rooftop, and maintenance services across India. ISO certified, 25-year warranty."
         />
+        <meta
+          name="keywords"
+          content="solar services, residential solar, commercial solar, industrial solar, solar rooftop installation, solar maintenance, solar panel installation, solar energy services India"
+        />
+        <link rel="canonical" href={`${baseUrl}/services`} />
+        
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`${baseUrl}/services`} />
+        <meta property="og:title" content="Solar Services - Residential, Commercial & Industrial Solutions" />
+        <meta property="og:description" content="Comprehensive solar solutions including residential, commercial, industrial, rooftop, and maintenance services across India." />
+        <meta property="og:image" content={`${baseUrl}/logoo1.png`} />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Solar Services - Shivam GreenSolar Energy" />
+        <meta name="twitter:description" content="Comprehensive solar solutions for residential, commercial, and industrial needs." />
       </Helmet>
+      
+      <StructuredData
+        type="Service"
+        data={{
+          serviceType: "Solar Energy Installation and Services",
+          provider: organizationSchema,
+          areaServed: "IN",
+          hasOfferCatalog: {
+            "@type": "OfferCatalog",
+            name: "Solar Energy Services",
+            itemListElement: services.map((service, index) => ({
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: service.title,
+                description: service.description,
+              },
+            })),
+          },
+        }}
+      />
 
       <Navbar />
       

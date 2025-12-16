@@ -15,6 +15,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/lib/supabase";
 import TestimonialForm from "@/components/sections/TestimonialForm";
+import StructuredData, { localBusinessSchema } from "@/components/seo/StructuredData";
+
+const baseUrl = "https://www.shivamgreensolarenergy.in";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters").max(100),
@@ -123,12 +126,32 @@ export default function Contact() {
   return (
     <>
       <Helmet>
+        <html lang="en" />
         <title>Contact Us - Shivam GreenSolar Energy | Get Free Solar Consultation</title>
         <meta
           name="description"
-          content="Contact Shivam GreenSolar Energy for a free solar consultation. Our experts are ready to help you transition to clean, renewable solar energy."
+          content="Contact Shivam GreenSolar Energy for a free solar consultation. Call +91 8009430952 or +91 8400713758. Our experts are ready to help you transition to clean, renewable solar energy. Located in Lucknow, Uttar Pradesh."
         />
+        <meta
+          name="keywords"
+          content="contact solar company, solar consultation, solar quote, solar installation contact, solar energy consultation, solar company phone number"
+        />
+        <link rel="canonical" href={`${baseUrl}/contact`} />
+        
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`${baseUrl}/contact`} />
+        <meta property="og:title" content="Contact Us - Shivam GreenSolar Energy | Get Free Solar Consultation" />
+        <meta property="og:description" content="Contact Shivam GreenSolar Energy for a free solar consultation. Our experts are ready to help you transition to clean, renewable solar energy." />
+        <meta property="og:image" content={`${baseUrl}/logoo1.png`} />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Contact Us - Shivam GreenSolar Energy" />
+        <meta name="twitter:description" content="Get a free solar consultation. Call +91 8009430952 or +91 8400713758" />
       </Helmet>
+      
+      <StructuredData type="LocalBusiness" data={localBusinessSchema} />
 
       <Navbar />
       
