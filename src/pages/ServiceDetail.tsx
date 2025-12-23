@@ -6,6 +6,9 @@ import Footer from "@/components/shared/Footer";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import StructuredData, { organizationSchema } from "@/components/seo/StructuredData";
+
+const baseUrl = "https://www.shivamgreensolarenergy.in";
 
 const serviceData = {
   residential: {
@@ -165,9 +168,58 @@ export default function ServiceDetail() {
   return (
     <>
       <Helmet>
-        <title>{service.title} - Shivam GreenSolar Energy | Professional Solar Solutions</title>
-        <meta name="description" content={service.description} />
+        {/* SEO: Dynamic title & description with keywords */}
+        <title>
+          {service.title} | Shivam Green Solar Energy – Rooftop Solar Solutions in India
+        </title>
+        <meta
+          name="description"
+          content={`${service.description} Offered by Shivam Green Solar Energy, a solar energy company in India providing rooftop solar solutions.`}
+        />
+        {/* SEO: Keywords */}
+        <meta
+          name="keywords"
+          content="shivam solar, shivam solar energy, shivamgreen solar, shivam green solar energy, solar energy company in India, rooftop solar solutions"
+        />
+        {/* SEO: Canonical per service */}
+        <link rel="canonical" href={`${baseUrl}/services/${serviceType}`} />
+        {/* SEO: Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`${baseUrl}/services/${serviceType}`} />
+        <meta property="og:title" content={`${service.title} – Rooftop Solar Solutions`} />
+        <meta property="og:description" content={service.description} />
+        <meta property="og:image" content={`${baseUrl}/logoo1.png`} />
+        {/* SEO: Twitter Card */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={`${service.title} – Shivam Green Solar Energy`} />
+        <meta name="twitter:description" content={service.description} />
       </Helmet>
+
+      {/* SEO: BreadcrumbList schema */}
+      <StructuredData
+        type="BreadcrumbList"
+        data={{
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: baseUrl },
+            { "@type": "ListItem", position: 2, name: "Services", item: `${baseUrl}/services` },
+            { "@type": "ListItem", position: 3, name: service.title, item: `${baseUrl}/services/${serviceType}` },
+          ],
+        }}
+      />
+
+      {/* SEO: FAQPage schema for rich results */}
+      <StructuredData
+        type="FAQPage"
+        data={{
+          "@type": "FAQPage",
+          mainEntity: service.faqs.map((faq) => ({
+            "@type": "Question",
+            name: faq.q,
+            acceptedAnswer: { "@type": "Answer", text: faq.a },
+          })),
+        }}
+      />
 
       <Navbar />
       

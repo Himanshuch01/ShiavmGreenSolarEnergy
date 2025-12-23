@@ -7,6 +7,11 @@ Sitemap: https://www.shivamgreensolarenergy.in/sitemap.xml
 # Disallow admin or private areas if any
 Disallow: /admin/
 Disallow: /api/
+Disallow: /careers
+Disallow: /blog
+Disallow: /faqs
+Disallow: /guide
+Disallow: /case-studies
 
 # Allow all important pages
 Allow: /

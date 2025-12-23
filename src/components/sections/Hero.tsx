@@ -43,9 +43,11 @@ export default function Hero() {
               <span className="text-gradient">Clean Solar Energy</span>
             </h1>
 
+            {/* SEO: Add primary keywords naturally in first 100 words */}
             <p className="text-base sm:text-lg text-muted-foreground mb-6 sm:mb-8 max-w-lg">
-              Transform your home or business with sustainable solar solutions. 
-              Reduce energy costs by up to 90% while contributing to a greener planet.
+              Shivam Green Solar Energy is a trusted solar energy company in India offering 
+              rooftop solar solutions for homes and businesses. Transform your property with 
+              sustainable solar and reduce energy costs by up to 90%.
             </p>
 
             <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mb-8 sm:mb-12">

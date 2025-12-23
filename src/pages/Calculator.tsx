@@ -181,7 +181,8 @@ export default function Calculator() {
         />
         <meta
           name="keywords"
-          content="solar calculator, solar savings calculator, solar cost calculator, solar ROI calculator, solar system size calculator, solar subsidy calculator India"
+          /* SEO: Include primary keywords */
+          content="shivam solar, shivam solar energy, shivamgreen solar, shivam green solar energy, solar energy company in India, rooftop solar solutions, solar calculator"
         />
         <link rel="canonical" href={`${baseUrl}/calculator`} />
         

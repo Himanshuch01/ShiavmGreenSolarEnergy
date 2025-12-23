@@ -1,7 +1,8 @@
 import { Helmet } from "react-helmet-async";
 
+// SEO: Extend schema types to include FAQPage for rich results
 interface StructuredDataProps {
-  type: "Organization" | "LocalBusiness" | "WebSite" | "Service" | "BreadcrumbList";
+  type: "Organization" | "LocalBusiness" | "WebSite" | "Service" | "BreadcrumbList" | "FAQPage"; // SEO: Added FAQPage
   data: Record<string, any>;
 }
 
@@ -67,3 +68,15 @@ export const websiteSchema = {
     "query-input": "required name=search_term_string",
   },
 };
+
+// SEO: Helper to build BreadcrumbList
+export const buildBreadcrumbList = (items: { name: string; url: string }[]) => ({
+  "@type": "BreadcrumbList",
+  itemListElement: items.map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: item.name,
+    item: item.url,
+  })),
+});
+

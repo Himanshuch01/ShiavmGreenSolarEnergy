@@ -5,6 +5,9 @@ import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import CountUp from "@/components/shared/CountUp";
+import StructuredData, { organizationSchema } from "@/components/seo/StructuredData";
+
+const baseUrl = "https://www.shivamgreensolarenergy.in";
 
 const timeline = [
   { year: "2009", title: "Founded", description: "Started with a vision to make solar energy accessible to everyone." },
@@ -35,12 +38,33 @@ export default function About() {
   return (
     <>
       <Helmet>
-        <title>About Us - Shivam GreenSolar Energy | India's Trusted Solar Energy Company</title>
+        {/* SEO: Title and description include target keywords */}
+        <title>About Shivam Green Solar Energy | Solar Energy Company in India</title>
         <meta
           name="description"
-          content="Learn about Shivam GreenSolar Energy's mission to make sustainable solar energy accessible. With 6 months of experience and 150+ installations across India."
+          content="Discover Shivam Green Solar Energy (shivam solar, shivam solar energy), a leading solar energy company in India offering rooftop solar solutions and sustainable installations."
         />
+        {/* SEO: Keywords for About page */}
+        <meta
+          name="keywords"
+          content="shivam solar, shivam solar energy, shivamgreen solar, shivam green solar energy, solar energy company in India, rooftop solar solutions"
+        />
+        {/* SEO: Canonical for About page */}
+        <link rel="canonical" href={`${baseUrl}/about`} />
+        {/* SEO: Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`${baseUrl}/about`} />
+        <meta property="og:title" content="About Shivam Green Solar Energy" />
+        <meta property="og:description" content="A trusted solar energy company in India offering rooftop solar solutions." />
+        <meta property="og:image" content={`${baseUrl}/logoo1.png`} />
+        {/* SEO: Twitter Card */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="About Shivam Green Solar Energy" />
+        <meta name="twitter:description" content="Leading rooftop solar solutions provider in India." />
       </Helmet>
+
+      {/* SEO: Organization structured data */}
+      <StructuredData type="Organization" data={organizationSchema} />
 
       <Navbar />
       
@@ -57,9 +81,9 @@ export default function About() {
                 <span className="text-gradient">Sustainable Future</span>
               </h1>
               <p className="text-lg text-muted-foreground">
-                For over 6 months, we've been at the forefront of India's renewable energy 
-                revolution, making solar power accessible, affordable, and efficient for 
-                homes, businesses, and industries.
+                Shivam Green Solar Energy is a solar energy company in India delivering 
+                rooftop solar solutions for homes, businesses, and industries. As shivam 
+                solar and shivam solar energy, we make clean energy accessible and affordable.
               </p>
             </AnimatedSection>
           </div>

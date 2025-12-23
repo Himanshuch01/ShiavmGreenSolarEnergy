@@ -76,6 +76,10 @@ export default function Footer() {
               Leading the renewable energy revolution with innovative solar solutions 
               for homes, businesses, and industries. Power your future sustainably.
             </p>
+            {/* SEO: Add sr-only NAP + local keywords without changing UI */}
+            <p className="sr-only">
+              Shivam Green Solar Energy (shivam solar, shivam solar energy, shivamgreen solar) is a solar energy company in India based in Lucknow, Uttar Pradesh, offering rooftop solar solutions and consultation.
+            </p>
             <div className="space-y-2 sm:space-y-3">
               <a
                 href="mailto:info@shivamgreensolar.com"
@@ -130,8 +134,10 @@ export default function Footer() {
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
+                  {/* SEO: Add rel="nofollow" for placeholder pages to avoid crawl of 404s */}
                   <Link
                     to={link.path}
+                    rel={link.path === "/careers" || link.path === "/blog" ? "nofollow" : undefined}
                     className="text-background/70 hover:text-primary transition-colors"
                   >
                     {link.name}
@@ -147,8 +153,10 @@ export default function Footer() {
             <ul className="space-y-3">
               {footerLinks.resources.map((link) => (
                 <li key={link.name}>
+                  {/* SEO: Add rel="nofollow" for placeholder resources to avoid crawl of 404s */}
                   <Link
                     to={link.path}
+                    rel={["/faqs", "/guide", "/case-studies"].includes(link.path) ? "nofollow" : undefined}
                     className="text-background/70 hover:text-primary transition-colors"
                   >
                     {link.name}

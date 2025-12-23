@@ -52,30 +52,34 @@ export default function Services() {
     <>
       <Helmet>
         <html lang="en" />
-        <title>Solar Services - Shivam GreenSolar Energy | Residential, Commercial & Industrial Solutions</title>
+        {/* SEO: Title optimized for services with keywords */}
+        <title>Solar Services | Shivam Green Solar Energy – Rooftop, Residential, Commercial & Industrial</title>
         <meta
           name="description"
-          content="Explore Shivam GreenSolar Energy's comprehensive solar solutions including residential, commercial, industrial, rooftop, and maintenance services across India. ISO certified, 25-year warranty."
+          /* SEO: Description includes primary keywords */
+          content="Explore rooftop solar solutions by Shivam Green Solar Energy (shivam solar). Residential, commercial, industrial services across India from a trusted solar energy company in India."
         />
         <meta
           name="keywords"
-          content="solar services, residential solar, commercial solar, industrial solar, solar rooftop installation, solar maintenance, solar panel installation, solar energy services India"
+          /* SEO: Include primary keywords */
+          content="shivam solar, shivam solar energy, shivamgreen solar, shivam green solar energy, rooftop solar solutions, solar energy company in India"
         />
         <link rel="canonical" href={`${baseUrl}/services`} />
         
-        {/* Open Graph */}
+        {/* SEO: Open Graph */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`${baseUrl}/services`} />
-        <meta property="og:title" content="Solar Services - Residential, Commercial & Industrial Solutions" />
-        <meta property="og:description" content="Comprehensive solar solutions including residential, commercial, industrial, rooftop, and maintenance services across India." />
+        <meta property="og:title" content="Solar Services – Rooftop, Residential, Commercial & Industrial" />
+        <meta property="og:description" content="Comprehensive rooftop solar solutions across India by Shivam Green Solar Energy." />
         <meta property="og:image" content={`${baseUrl}/logoo1.png`} />
         
-        {/* Twitter */}
+        {/* SEO: Twitter Card */}
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="Solar Services - Shivam GreenSolar Energy" />
         <meta name="twitter:description" content="Comprehensive solar solutions for residential, commercial, and industrial needs." />
       </Helmet>
       
+      {/* SEO: Services schema for rich results */}
       <StructuredData
         type="Service"
         data={{
@@ -97,6 +101,18 @@ export default function Services() {
         }}
       />
 
+      {/* SEO: BreadcrumbList schema */}
+      <StructuredData
+        type="BreadcrumbList"
+        data={{
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: baseUrl },
+            { "@type": "ListItem", position: 2, name: "Services", item: `${baseUrl}/services` },
+          ],
+        }}
+      />
+
       <Navbar />
       
       <main className="pt-24">
@@ -111,9 +127,11 @@ export default function Services() {
                 Complete Solar{" "}
                 <span className="text-gradient">Solutions</span>
               </h1>
+              {/* SEO: Add keywords naturally in intro copy */}
               <p className="text-lg text-muted-foreground">
-                From residential rooftops to industrial complexes, we provide end-to-end 
-                solar energy solutions tailored to your specific needs and requirements.
+                From residential rooftops to industrial complexes, Shivam Green Solar Energy 
+                (shivam solar) provides end-to-end rooftop solar solutions tailored to your 
+                needs across India.
               </p>
             </AnimatedSection>
           </div>

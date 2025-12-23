@@ -134,7 +134,8 @@ export default function Contact() {
         />
         <meta
           name="keywords"
-          content="contact solar company, solar consultation, solar quote, solar installation contact, solar energy consultation, solar company phone number"
+          /* SEO: Include primary keywords */
+          content="shivam solar, shivam solar energy, shivamgreen solar, shivam green solar energy, solar energy company in India, rooftop solar solutions, contact"
         />
         <link rel="canonical" href={`${baseUrl}/contact`} />
         
@@ -167,9 +168,10 @@ export default function Contact() {
                 Let's Start Your{" "}
                 <span className="text-gradient">Solar Journey</span>
               </h1>
+              {/* SEO: Add keywords naturally in first 100 words */}
               <p className="text-lg text-muted-foreground">
-                Get in touch with our solar experts for a free consultation and 
-                customized solution for your home or business.
+                Contact Shivam Green Solar Energy (shivam solar, shivam solar energy) for 
+                rooftop solar solutions and a free consultation for your home or business in India.
               </p>
             </AnimatedSection>
           </div>
