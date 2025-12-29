@@ -9,7 +9,7 @@ import Testimonials from "@/components/sections/Testimonials";
 import CTA from "@/components/sections/CTA";
 import StructuredData, { organizationSchema, websiteSchema } from "@/components/seo/StructuredData";
 
-const baseUrl = "https://www.shivamgreensolarenergy.in";
+const baseUrl = "https://shivamgreensolarenergy.in";
 
 export default function Index() {
   return (

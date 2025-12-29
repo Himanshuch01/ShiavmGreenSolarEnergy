@@ -7,7 +7,7 @@ import AnimatedSection from "@/components/shared/AnimatedSection";
 import CountUp from "@/components/shared/CountUp";
 import StructuredData, { organizationSchema } from "@/components/seo/StructuredData";
 
-const baseUrl = "https://www.shivamgreensolarenergy.in";
+const baseUrl = "https://shivamgreensolarenergy.in";
 
 const timeline = [
   { year: "2009", title: "Founded", description: "Started with a vision to make solar energy accessible to everyone." },

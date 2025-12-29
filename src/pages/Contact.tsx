@@ -17,7 +17,7 @@ import { supabase } from "@/lib/supabase";
 import TestimonialForm from "@/components/sections/TestimonialForm";
 import StructuredData, { localBusinessSchema } from "@/components/seo/StructuredData";
 
-const baseUrl = "https://www.shivamgreensolarenergy.in";
+const baseUrl = "https://shivamgreensolarenergy.in";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters").max(100),

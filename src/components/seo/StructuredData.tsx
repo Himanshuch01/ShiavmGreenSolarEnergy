@@ -23,8 +23,8 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
 // Pre-configured schemas
 export const organizationSchema = {
   name: "Shivam GreenSolar Energy",
-  url: "https://www.shivamgreensolarenergy.in",
-  logo: "https://www.shivamgreensolarenergy.in/logoo1.png",
+  url: "https://shivamgreensolarenergy.in",
+  logo: "https://shivamgreensolarenergy.in/logoo1.png",
   description: "Leading solar energy solutions provider in India, offering residential, commercial, and industrial solar installations.",
   address: {
     "@type": "PostalAddress",
@@ -58,12 +58,12 @@ export const localBusinessSchema = {
 
 export const websiteSchema = {
   name: "Shivam GreenSolar Energy",
-  url: "https://www.shivamgreensolarenergy.in",
+  url: "https://shivamgreensolarenergy.in",
   potentialAction: {
     "@type": "SearchAction",
     target: {
       "@type": "EntryPoint",
-      urlTemplate: "https://www.shivamgreensolarenergy.in/search?q={search_term_string}",
+      urlTemplate: "https://shivamgreensolarenergy.in/search?q={search_term_string}",
     },
     "query-input": "required name=search_term_string",
   },

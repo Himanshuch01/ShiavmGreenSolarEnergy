@@ -17,7 +17,7 @@ import { Link } from "react-router-dom";
 import { supabase } from "@/lib/supabase";
 import StructuredData from "@/components/seo/StructuredData";
 
-const baseUrl = "https://www.shivamgreensolarenergy.in";
+const baseUrl = "https://shivamgreensolarenergy.in";
 
 const calculatorSchema = z.object({
   monthlyBill: z.number().min(500, "Minimum bill should be ₹500").max(1000000, "Maximum bill is ₹10,00,000"),

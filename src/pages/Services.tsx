@@ -7,7 +7,7 @@ import AnimatedSection from "@/components/shared/AnimatedSection";
 import { Button } from "@/components/ui/button";
 import StructuredData, { organizationSchema } from "@/components/seo/StructuredData";
 
-const baseUrl = "https://www.shivamgreensolarenergy.in";
+const baseUrl = "https://shivamgreensolarenergy.in";
 
 const services = [
   {
