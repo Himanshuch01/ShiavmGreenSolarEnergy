@@ -52,18 +52,12 @@ export default function Services() {
     <>
       <Helmet>
         <html lang="en" />
-        {/* SEO: Title optimized for services with keywords */}
-        <title>Solar Services | Shivam Green Solar Energy – Rooftop, Residential, Commercial & Industrial</title>
+        <title>Solar Services by Shivam Green Solar Energy</title>
         <meta
           name="description"
-          /* SEO: Description includes primary keywords */
-          content="Explore rooftop solar solutions by Shivam Green Solar Energy (shivam solar). Residential, commercial, industrial services across India from a trusted solar energy company in India."
+          content="Explore rooftop solar installation, commercial solar solutions, and maintenance services by Shivam Green Solar Energy."
         />
-        <meta
-          name="keywords"
-          /* SEO: Include primary keywords */
-          content="shivam solar, shivam solar energy, shivamgreen solar, shivam green solar energy, rooftop solar solutions, solar energy company in India"
-        />
+        <meta name="robots" content="index, follow" />
         <link rel="canonical" href={`${baseUrl}/services`} />
         
         {/* SEO: Open Graph */}

@@ -38,18 +38,12 @@ export default function About() {
   return (
     <>
       <Helmet>
-        {/* SEO: Title and description include target keywords */}
-        <title>About Shivam Green Solar Energy | Solar Energy Company in India</title>
+        <title>About Shivam Green Solar Energy | Trusted Solar Company</title>
         <meta
           name="description"
-          content="Discover Shivam Green Solar Energy (shivam solar, shivam solar energy), a leading solar energy company in India offering rooftop solar solutions and sustainable installations."
+          content="Learn about Shivam Green Solar Energy, our mission, experience, and commitment to clean solar power."
         />
-        {/* SEO: Keywords for About page */}
-        <meta
-          name="keywords"
-          content="shivam solar, shivam solar energy, shivamgreen solar, shivam green solar energy, solar energy company in India, rooftop solar solutions"
-        />
-        {/* SEO: Canonical for About page */}
+        <meta name="robots" content="index, follow" />
         <link rel="canonical" href={`${baseUrl}/about`} />
         {/* SEO: Open Graph */}
         <meta property="og:type" content="website" />

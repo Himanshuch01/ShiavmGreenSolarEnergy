@@ -1,5 +1,7 @@
-import { Shield, Clock, ThumbsUp, Headphones, BadgeCheck, Wallet } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Shield, Clock, ThumbsUp, Headphones, BadgeCheck, Wallet, ArrowRight } from "lucide-react";
 import AnimatedSection from "@/components/shared/AnimatedSection";
+import { Button } from "@/components/ui/button";
 
 const features = [
   {
@@ -54,6 +56,12 @@ export default function WhyChooseUs() {
                 future. Our commitment to quality, service, and customer satisfaction 
                 sets us apart in the industry.
               </p>
+              <Button variant="hero" size="lg" asChild>
+                <Link to="/about">
+                  Learn More About Us
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Link>
+              </Button>
             </AnimatedSection>
 
             <AnimatedSection direction="left" delay={0.2}>

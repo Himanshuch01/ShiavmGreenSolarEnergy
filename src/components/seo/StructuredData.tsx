@@ -22,10 +22,11 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
 
 // Pre-configured schemas
 export const organizationSchema = {
-  name: "Shivam GreenSolar Energy",
+  name: "Shivam Green Solar Energy",
+  alternateName: "Shivam GreenSolar Energy",
   url: "https://shivamgreensolarenergy.in",
   logo: "https://shivamgreensolarenergy.in/logoo1.png",
-  description: "Leading solar energy solutions provider in India, offering residential, commercial, and industrial solar installations.",
+  description: "Leading solar energy company in India offering rooftop solar solutions for residential, commercial, and industrial properties.",
   address: {
     "@type": "PostalAddress",
     streetAddress: "Kalyanpur west",
@@ -36,15 +37,12 @@ export const organizationSchema = {
   },
   contactPoint: {
     "@type": "ContactPoint",
-    telephone: "+91-8009430952",
+    telephone: "+91-9511048844",
     contactType: "Customer Service",
     areaServed: "IN",
     availableLanguage: ["en", "hi"],
   },
   sameAs: [
-    "https://www.facebook.com/shivamgreensolar",
-    "https://twitter.com/ShivamGreenSolar",
-    "https://www.linkedin.com/company/shivamgreensolar",
     "https://www.instagram.com/shivamgreensolar",
   ],
 };
@@ -54,16 +52,24 @@ export const localBusinessSchema = {
   "@type": "LocalBusiness",
   priceRange: "$$",
   openingHours: "Mo-Sa 09:00-18:00",
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: "26.8467",
+    longitude: "80.9462",
+  },
 };
 
 export const websiteSchema = {
-  name: "Shivam GreenSolar Energy",
+  "@type": "WebSite",
+  name: "Shivam Green Solar Energy",
+  alternateName: "Shivam GreenSolar Energy",
   url: "https://shivamgreensolarenergy.in",
+  description: "Solar energy company in India providing rooftop solar solutions",
   potentialAction: {
     "@type": "SearchAction",
     target: {
       "@type": "EntryPoint",
-      urlTemplate: "https://shivamgreensolarenergy.in/search?q={search_term_string}",
+      urlTemplate: "https://shivamgreensolarenergy.in/?s={search_term_string}",
     },
     "query-input": "required name=search_term_string",
   },

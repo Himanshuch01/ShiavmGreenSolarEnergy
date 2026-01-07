@@ -16,21 +16,12 @@ export default function Index() {
     <>
       <Helmet>
         <html lang="en" />
-        {/* SEO: Optimized title with primary keywords + brand */}
-        <title>Shivam Green Solar Energy | Solar Energy Company in India & Rooftop Solar Solutions</title>
+        <title>Shivam Green Solar Energy | Solar Energy Company in India</title>
         <meta
           name="description"
-          /* SEO: Refined description (150–160 chars) with target keywords */
-          content="Shivam Green Solar Energy (shivam solar, shivam solar energy) offers rooftop solar solutions across India. A trusted solar energy company in India with 150+ installations."
+          content="Shivam Green Solar Energy provides rooftop solar solutions for homes, businesses, and industries across India."
         />
-        <meta
-          name="keywords"
-          /* SEO: Include primary keywords naturally */
-          content="shivam solar, shivam solar energy, shivamgreen solar, shivam green solar energy, solar energy company in India, rooftop solar solutions"
-        />
-        <meta name="author" content="Shivam GreenSolar Energy" />
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-        {/* SEO: Canonical homepage */}
         <link rel="canonical" href={baseUrl} />
 
         {/* SEO: Open Graph / Facebook */}

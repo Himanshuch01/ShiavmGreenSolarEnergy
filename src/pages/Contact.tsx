@@ -127,29 +127,23 @@ export default function Contact() {
     <>
       <Helmet>
         <html lang="en" />
-        <title>Contact Us - Shivam GreenSolar Energy | Get Free Solar Consultation</title>
+        <title>Contact Shivam Green Solar Energy | Solar Installation Support</title>
         <meta
           name="description"
-          content="Contact Shivam GreenSolar Energy for a free solar consultation. Call +91 8009430952 or +91 8400713758. Our experts are ready to help you transition to clean, renewable solar energy. Located in Lucknow, Uttar Pradesh."
+          content="Contact Shivam Green Solar Energy for solar installation queries, pricing, and consultations."
         />
-        <meta
-          name="keywords"
-          /* SEO: Include primary keywords */
-          content="shivam solar, shivam solar energy, shivamgreen solar, shivam green solar energy, solar energy company in India, rooftop solar solutions, contact"
-        />
+        <meta name="robots" content="index, follow" />
         <link rel="canonical" href={`${baseUrl}/contact`} />
         
-        {/* Open Graph */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`${baseUrl}/contact`} />
-        <meta property="og:title" content="Contact Us - Shivam GreenSolar Energy | Get Free Solar Consultation" />
-        <meta property="og:description" content="Contact Shivam GreenSolar Energy for a free solar consultation. Our experts are ready to help you transition to clean, renewable solar energy." />
+        <meta property="og:title" content="Contact Shivam Green Solar Energy" />
+        <meta property="og:description" content="Contact Shivam Green Solar Energy for solar installation queries, pricing, and consultations." />
         <meta property="og:image" content={`${baseUrl}/logoo1.png`} />
         
-        {/* Twitter */}
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="Contact Us - Shivam GreenSolar Energy" />
-        <meta name="twitter:description" content="Get a free solar consultation. Call +91 8009430952 or +91 8400713758" />
+        <meta name="twitter:title" content="Contact Shivam Green Solar Energy" />
+        <meta name="twitter:description" content="Contact us for solar installation queries, pricing, and consultations." />
       </Helmet>
       
       <StructuredData type="LocalBusiness" data={localBusinessSchema} />
