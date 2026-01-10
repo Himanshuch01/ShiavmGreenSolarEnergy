@@ -48,8 +48,8 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email",
-    content: "info@shivamgreensolar.com",
-    link: "mailto:info@shivamgreensolar.com",
+    content: "shivamgreensolar28@gmail.com",
+    link: "mailto:shivamgreensolar28@gmail.com",
   },
   {
     icon: MapPin,
