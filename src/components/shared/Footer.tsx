@@ -86,7 +86,7 @@ export default function Footer() {
                 className="flex items-center gap-2 sm:gap-3 text-background/70 hover:text-primary transition-colors text-sm sm:text-base break-words"
               >
                 <Mail className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
-                <span>info@shivamgreensolar.com</span>
+                <span>shivamgreensolar28@gmail.com</span>
               </a>
               <div className="flex flex-col gap-2 sm:gap-3">
                 <a
