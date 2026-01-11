@@ -46,6 +46,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(200).json({ success: true });
   } catch (error) {
     console.error('Login error:', error);
-    return res.status(500).json({ success: false, error: 'Authentication failed' });
+    console.error('Session secret exists:', !!process.env.SESSION_SECRET);
+    console.error('Admin username exists:', !!process.env.ADMIN_USERNAME);
+    return res.status(500).json({ 
+      success: false, 
+      error: 'Authentication failed',
+      details: process.env.NODE_ENV === 'development' ? String(error) : undefined
+    });
   }
 }
