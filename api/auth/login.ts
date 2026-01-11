@@ -31,18 +31,29 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
+    console.log('=== Login attempt started ===');
+    console.log('Request method:', req.method);
+    console.log('Has body:', !!req.body);
+    
     const { username, password } = req.body;
+
+    console.log('Username provided:', !!username);
+    console.log('Password provided:', !!password);
 
     // Validate input
     if (!username || !password) {
+      console.log('Missing credentials');
       return res.status(400).json({ success: false, error: 'Username and password required' });
     }
 
+    console.log('Validating credentials...');
     // Validate credentials
     if (!validateCredentials(username, password)) {
+      console.log('Invalid credentials');
       return res.status(401).json({ success: false, error: 'Invalid username or password' });
     }
 
+    console.log('Credentials valid, creating session...');
     // Create session
     const session = await getIronSession<SessionData>(req, res, sessionOptions);
     
