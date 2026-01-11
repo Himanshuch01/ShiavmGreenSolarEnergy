@@ -22,16 +22,19 @@ export interface SessionData {
 }
 
 // Validate required environment variables
-const SESSION_SECRET = process.env.VITE_SESSION_SECRET || process.env.SESSION_SECRET || '';
-const ADMIN_USERNAME = process.env.VITE_ADMIN_USERNAME || '';
-const ADMIN_PASSWORD = process.env.VITE_ADMIN_PASSWORD || '';
+const SESSION_SECRET = process.env.SESSION_SECRET || process.env.VITE_SESSION_SECRET || '';
+const ADMIN_USERNAME = process.env.ADMIN_USERNAME || process.env.VITE_ADMIN_USERNAME || '';
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || process.env.VITE_ADMIN_PASSWORD || '';
 
 if (!SESSION_SECRET || SESSION_SECRET.length < 32) {
-  console.error('SESSION_SECRET must be at least 32 characters long');
+  console.error('⚠️ SESSION_SECRET must be at least 32 characters long');
+  console.error('Current length:', SESSION_SECRET.length);
 }
 
 if (!ADMIN_USERNAME || !ADMIN_PASSWORD) {
-  console.error('ADMIN_USERNAME and ADMIN_PASSWORD must be set');
+  console.error('⚠️ ADMIN_USERNAME and ADMIN_PASSWORD must be set');
+  console.error('Username set:', !!ADMIN_USERNAME);
+  console.error('Password set:', !!ADMIN_PASSWORD);
 }
 
 // Iron-session configuration
