@@ -52,8 +52,8 @@ export default function WhyChooseUs() {
                 Across India
               </h2>
               <p className="text-lg text-muted-foreground mb-8">
-                We're not just installing solar panels – we're building a sustainable 
-                future. Our commitment to quality, service, and customer satisfaction 
+                We're not just installing solar panels – we're building a sustainable
+                future. Our commitment to quality, service, and customer satisfaction
                 sets us apart in the industry.
               </p>
               <Button variant="hero" size="lg" asChild>
@@ -65,7 +65,7 @@ export default function WhyChooseUs() {
             </AnimatedSection>
 
             <AnimatedSection direction="left" delay={0.2}>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-4 mt-8">
                 <div className="glass-card px-6 py-4 flex items-center gap-3">
                   <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
                     <Shield className="w-6 h-6 text-primary" />
