@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle } from "lucide-react";
 import { useForm } from "react-hook-form";
@@ -68,6 +69,19 @@ const contactInfo = [
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      // Small timeout to ensure DOM is ready
+      setTimeout(() => {
+        const element = document.querySelector(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    }
+  }, [hash]);
 
   const {
     register,
@@ -81,7 +95,7 @@ export default function Contact() {
 
   const onSubmit = async (data: ContactForm) => {
     setIsSubmitting(true);
-    
+
     try {
       // Save to Supabase
       const { error } = await supabase
@@ -102,19 +116,19 @@ export default function Contact() {
 
       setIsSubmitting(false);
       setIsSubmitted(true);
-      
+
       toast({
         title: "Message Sent!",
         description: "We'll get back to you within 24 hours.",
       });
 
       reset();
-      
+
       setTimeout(() => setIsSubmitted(false), 5000);
     } catch (error: any) {
       console.error("Error submitting form:", error);
       setIsSubmitting(false);
-      
+
       toast({
         title: "Error",
         description: error.message || "Failed to send message. Please try again later.",
@@ -134,22 +148,22 @@ export default function Contact() {
         />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href={`${baseUrl}/contact`} />
-        
+
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`${baseUrl}/contact`} />
         <meta property="og:title" content="Contact Shivam Green Solar Energy" />
         <meta property="og:description" content="Contact Shivam Green Solar Energy for solar installation queries, pricing, and consultations." />
         <meta property="og:image" content={`${baseUrl}/logoo1.png`} />
-        
+
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="Contact Shivam Green Solar Energy" />
         <meta name="twitter:description" content="Contact us for solar installation queries, pricing, and consultations." />
       </Helmet>
-      
+
       <StructuredData type="LocalBusiness" data={localBusinessSchema} />
 
       <Navbar />
-      
+
       <main className="pt-24">
         {/* Hero */}
         <section className="section-padding bg-hero-pattern">
@@ -164,7 +178,7 @@ export default function Contact() {
               </h1>
               {/* SEO: Add keywords naturally in first 100 words */}
               <p className="text-lg text-muted-foreground">
-                Contact Shivam Green Solar Energy (shivam solar, shivam solar energy) for 
+                Contact Shivam Green Solar Energy (shivam solar, shivam solar energy) for
                 rooftop solar solutions and a free consultation for your home or business in India.
               </p>
             </AnimatedSection>
@@ -181,7 +195,7 @@ export default function Contact() {
                   <h2 className="font-display text-xl sm:text-2xl font-bold mb-4 sm:mb-6">
                     Get in Touch
                   </h2>
-                  
+
                   {contactInfo.map((info) => (
                     <div key={info.title} className="glass-card p-4 sm:p-6">
                       <div className="flex items-start gap-3 sm:gap-4">
@@ -326,7 +340,7 @@ export default function Contact() {
         </section>
 
         {/* Testimonial Form Section */}
-        <section className="section-padding bg-muted">
+        <section id="testimonial" className="section-padding bg-muted">
           <div className="container-custom">
             <AnimatedSection className="text-center max-w-3xl mx-auto mb-12">
               <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">

@@ -11,6 +11,9 @@ import ServiceDetail from "./pages/ServiceDetail";
 import Calculator from "./pages/Calculator";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import AdminLogin from "./pages/admin/AdminLogin";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import ProtectedRoute from "./components/admin/ProtectedRoute";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +31,16 @@ const App = () => (
             <Route path="/services/:serviceType" element={<ServiceDetail />} />
             <Route path="/calculator" element={<Calculator />} />
             <Route path="/contact" element={<Contact />} />
+            {/* Admin Routes - Isolated and Protected */}
+            <Route path="/admin" element={<AdminLogin />} />
+            <Route 
+              path="/admin/dashboard" 
+              element={
+                <ProtectedRoute>
+                  <AdminDashboard />
+                </ProtectedRoute>
+              } 
+            />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

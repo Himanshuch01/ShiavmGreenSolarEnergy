@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Star, Quote } from "lucide-react";
+import { ChevronLeft, ChevronRight, Star, Quote, MessageSquarePlus } from "lucide-react";
+import { Link } from "react-router-dom";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import { supabase, Testimonial } from "@/lib/supabase";
 
@@ -208,6 +209,17 @@ export default function Testimonials() {
             >
               <ChevronRight className="w-6 h-6" />
             </button>
+          </div>
+
+          {/* Leave a Testimonial Button */}
+          <div className="flex justify-center mt-12">
+            <Link
+              to="/contact#testimonial"
+              className="btn-primary inline-flex items-center gap-2 px-8 py-4 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all hover:scale-105"
+            >
+              <MessageSquarePlus className="w-5 h-5" />
+              Leave a Testimonial
+            </Link>
           </div>
         </div>
       </div>
