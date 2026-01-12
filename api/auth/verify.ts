@@ -10,7 +10,7 @@
 
 import { getIronSession } from 'iron-session';
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { sessionOptions, SessionData } from '../session-config';
+import { sessionOptions, SessionData } from '../session-config.js';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // Add CORS headers
