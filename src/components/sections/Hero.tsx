@@ -121,14 +121,15 @@ export default function Hero() {
               className="relative w-full max-w-md lg:ml-auto xl:mx-auto flex-none"
               style={{ aspectRatio: "1 / 1" }}
             >
-              {/* Main circle */}
-              <div className="absolute inset-0 rounded-full bg-solar-gradient opacity-20 animate-pulse" />
+              {/* Main circle - Static for stability */}
+              <div className="absolute inset-0 rounded-full bg-solar-gradient opacity-20" />
 
               {/* Floating elements */}
               <motion.div
                 className="absolute top-10 left-10 glass-card p-4 z-20"
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 3, repeat: Infinity }}
+                initial={{ y: 0 }}
+                animate={{ y: -10 }}
+                transition={{ duration: 3, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
@@ -141,22 +142,19 @@ export default function Hero() {
                 </div>
               </motion.div>
 
-              <motion.div
+              {/* Central Sun - Static Position, no rotation */}
+              <div
                 className="absolute w-64 h-64 rounded-full bg-solar-gradient shadow-glow flex items-center justify-center z-10"
                 style={{
                   top: "50%",
                   left: "50%",
                   transform: "translate3d(-50%, -50%, 0)"
                 }}
-                animate={{ rotate: 360 }}
-                transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
               >
                 <Sun className="w-24 h-24 text-primary-foreground" />
-              </motion.div>
+              </div>
 
-              {/* Orbit rings */}
-              <div className="absolute inset-0 rounded-full border border-primary/20 animate-[spin_20s_linear_infinite]" />
-              <div className="absolute inset-8 rounded-full border border-secondary/20 animate-[spin_25s_linear_infinite_reverse]" />
+              {/* Removed Orbit rings to prevent distortion/layout shifts */}
             </div>
           </motion.div>
         </div>
