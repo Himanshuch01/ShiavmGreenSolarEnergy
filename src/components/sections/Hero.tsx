@@ -27,6 +27,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            className="relative z-20"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -45,8 +46,8 @@ export default function Hero() {
 
             {/* SEO: Add primary keywords naturally in first 100 words */}
             <p className="text-base sm:text-lg text-muted-foreground mb-6 sm:mb-8 max-w-lg">
-              Shivam Green Solar Energy is a trusted solar energy company in India offering 
-              rooftop solar solutions for homes and businesses. Transform your property with 
+              Shivam Green Solar Energy is a trusted solar energy company in India offering
+              rooftop solar solutions for homes and businesses. Transform your property with
               sustainable solar and reduce energy costs by up to 90%.
             </p>
 
@@ -94,10 +95,10 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="relative hidden lg:block"
           >
-            <div className="relative aspect-square max-w-lg mx-auto">
+            <div className="relative aspect-square w-full max-w-md xl:max-w-lg mx-auto">
               {/* Main circle */}
               <div className="absolute inset-0 rounded-full bg-solar-gradient opacity-20 animate-pulse" />
-              
+
               {/* Floating elements */}
               <motion.div
                 className="absolute top-10 left-10 glass-card p-4"
