@@ -14,29 +14,28 @@ import {
   CarouselNext,
   CarouselPrevious
 } from "@/components/ui/carousel";
-
 const openingImages = [
   {
     id: 1,
-    src: "/public/group.jpeg",
+    src: "/group.jpeg",
     title: "Inauguration Ceremony",
     date: "Jan 15, 2026"
   },
   {
     id: 2,
-    src: "/public/dii.jpeg",
+    src: "/dii.jpeg",
     title: "Key Handover",
     date: "Jan 15, 2026"
   },
   {
     id: 3,
-    src: "/public/group3.jpeg",
+    src: "/group3.jpeg",
     title: "Team Celebration",
     date: "Jan 15, 2026"
   },
   {
     id: 4,
-    src: "/public/dii4.jpeg",
+    src: "/dii4.jpeg",
     title: "Key Handover",
     date: "Jan 15, 2026"
   }
