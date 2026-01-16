@@ -7,19 +7,38 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-hero-pattern">
       {/* Background decoration - Fixed container reference */}
+      {/* Background decoration - Static SVG for Production Safety */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <motion.div
-          className="absolute -top-40 -right-40 w-96 h-96 bg-primary/10 rounded-full blur-3xl"
-          style={{ transform: "translate3d(0,0,0)" }}
-          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
-          transition={{ duration: 8, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute -bottom-40 -left-40 w-96 h-96 bg-secondary/10 rounded-full blur-3xl"
-          style={{ transform: "translate3d(0,0,0)" }}
-          animate={{ scale: [1.2, 1, 1.2], opacity: [0.5, 0.3, 0.5] }}
-          transition={{ duration: 8, repeat: Infinity }}
-        />
+        <svg
+          className="absolute w-full h-full"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+        >
+          <defs>
+            <filter id="blurFilter" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="15" />
+            </filter>
+          </defs>
+          {/* Large soft blue circle (top-right) */}
+          <circle
+            cx="80"
+            cy="20"
+            r="30"
+            fill="hsl(var(--primary))"
+            fillOpacity="0.1"
+            filter="url(#blurFilter)"
+          />
+          {/* Smaller teal circle (bottom-left) */}
+          <circle
+            cx="20"
+            cy="80"
+            r="25"
+            fill="hsl(var(--secondary))"
+            fillOpacity="0.1"
+            filter="url(#blurFilter)"
+          />
+        </svg>
       </div>
 
       <div className="container-custom relative z-10 pt-24 sm:pt-32 pb-12 sm:pb-20">
