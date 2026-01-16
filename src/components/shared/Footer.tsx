@@ -29,43 +29,52 @@ const socialLinks = [
   { icon: Facebook, href: "#", label: "Facebook" },
   { icon: Twitter, href: "#", label: "Twitter" },
   { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Instagram, href: "#", label: "Instagram" },
+  { icon: Instagram, href: "https://www.instagram.com/shivamgreensolar/", label: "Instagram" },
 ];
 
-export default function Footer() {
+interface FooterProps {
+  showCTA?: boolean;
+}
+
+export default function Footer({ showCTA = true }: FooterProps) {
   return (
     <footer className="bg-foreground text-background">
       {/* CTA Section */}
-      <div className="container-custom">
-        <div className="relative -top-16 bg-solar-gradient rounded-2xl p-8 md:p-12 shadow-glow">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div>
-              <h3 className="font-display text-2xl md:text-3xl font-bold text-primary-foreground mb-2">
-                Ready to Go Solar?
-              </h3>
-              <p className="text-primary-foreground/80">
-                Get a free consultation and custom quote for your property.
-              </p>
+      {showCTA && (
+        <div className="container-custom">
+          <div className="relative -top-16 bg-gradient-to-r from-primary via-primary/90 to-secondary/90 rounded-3xl p-8 md:p-10 shadow-xl overflow-hidden group">
+            {/* Background Decorative Element */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+
+            <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
+              <div className="max-w-xl">
+                <h3 className="font-display text-xl md:text-2xl font-semibold text-white mb-3 tracking-tight">
+                  Start Your Solar Journey
+                </h3>
+                <p className="text-white/90 text-sm md:text-base leading-relaxed font-light">
+                  Free consultation and a tailored solar solution designed for your property.
+                </p>
+              </div>
+              <Button variant="secondary" size="lg" className="shadow-lg hover:shadow-xl transition-all duration-300 rounded-full px-8" asChild>
+                <Link to="/contact" className="group/btn flex items-center gap-2">
+                  <span className="font-medium text-primary">Get Started</span>
+                  <ArrowRight className="w-4 h-4 text-primary group-hover/btn:translate-x-1 transition-transform" />
+                </Link>
+              </Button>
             </div>
-            <Button variant="accent" size="xl" asChild>
-              <Link to="/contact" className="group">
-                Get Started
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </Button>
           </div>
         </div>
-      </div>
+      )}
 
       {/* Main Footer */}
-      <div className="container-custom pb-8 sm:pb-12">
+      <div className={`container-custom pb-8 sm:pb-12 ${showCTA ? 'pt-0' : 'pt-16 sm:pt-20'}`}>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10">
           {/* Brand Column */}
           <div className="sm:col-span-2 lg:col-span-2">
             <Link to="/" className="flex items-center gap-2 mb-4 sm:mb-6">
-              <img 
-                src="/logoo1.png" 
-                alt="Shivam GreenSolar Energy Logo" 
+              <img
+                src="/logoo1.png"
+                alt="Shivam GreenSolar Energy Logo"
                 className="h-8 sm:h-10 w-auto"
               />
               <span className="font-display font-bold text-lg sm:text-xl">
@@ -73,7 +82,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-background/70 mb-4 sm:mb-6 max-w-sm text-sm sm:text-base">
-              Leading the renewable energy revolution with innovative solar solutions 
+              Leading the renewable energy revolution with innovative solar solutions
               for homes, businesses, and industries. Power your future sustainably.
             </p>
             {/* SEO: Add sr-only NAP + local keywords without changing UI */}

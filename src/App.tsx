@@ -9,6 +9,7 @@ import About from "./pages/About";
 import Services from "./pages/Services";
 import ServiceDetail from "./pages/ServiceDetail";
 import Calculator from "./pages/Calculator";
+import Gallery from "./pages/Gallery";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import AdminLogin from "./pages/admin/AdminLogin";
@@ -30,16 +31,17 @@ const App = () => (
             <Route path="/services" element={<Services />} />
             <Route path="/services/:serviceType" element={<ServiceDetail />} />
             <Route path="/calculator" element={<Calculator />} />
+            <Route path="/gallery" element={<Gallery />} />
             <Route path="/contact" element={<Contact />} />
             {/* Admin Routes - Isolated and Protected */}
             <Route path="/admin" element={<AdminLogin />} />
-            <Route 
-              path="/admin/dashboard" 
+            <Route
+              path="/admin/dashboard"
               element={
                 <ProtectedRoute>
                   <AdminDashboard />
                 </ProtectedRoute>
-              } 
+              }
             />
             <Route path="*" element={<NotFound />} />
           </Routes>
