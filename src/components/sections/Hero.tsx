@@ -95,15 +95,19 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative hidden lg:block"
+            className="relative hidden lg:block z-10"
           >
-            <div className="relative aspect-square w-full max-w-md lg:ml-auto xl:mx-auto">
+            {/* Visual Container with enforced aspect ratio and no flex shrink */}
+            <div
+              className="relative w-full max-w-md lg:ml-auto xl:mx-auto flex-none"
+              style={{ aspectRatio: "1 / 1" }}
+            >
               {/* Main circle */}
               <div className="absolute inset-0 rounded-full bg-solar-gradient opacity-20 animate-pulse" />
 
               {/* Floating elements */}
               <motion.div
-                className="absolute top-10 left-10 glass-card p-4"
+                className="absolute top-10 left-10 glass-card p-4 z-20"
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 3, repeat: Infinity }}
               >
@@ -119,7 +123,7 @@ export default function Hero() {
               </motion.div>
 
               <motion.div
-                className="absolute bottom-20 right-5 glass-card p-4"
+                className="absolute bottom-20 right-5 glass-card p-4 z-20"
                 animate={{ y: [0, 10, 0] }}
                 transition={{ duration: 4, repeat: Infinity, delay: 0.5 }}
               >
@@ -135,7 +139,12 @@ export default function Hero() {
               </motion.div>
 
               <motion.div
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full bg-solar-gradient shadow-glow flex items-center justify-center"
+                className="absolute w-64 h-64 rounded-full bg-solar-gradient shadow-glow flex items-center justify-center z-10"
+                style={{
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate3d(-50%, -50%, 0)"
+                }}
                 animate={{ rotate: 360 }}
                 transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
               >
