@@ -123,22 +123,6 @@ export default function Hero() {
               </motion.div>
 
               <motion.div
-                className="absolute bottom-20 right-5 glass-card p-4 z-20"
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 4, repeat: Infinity, delay: 0.5 }}
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-accent/20 flex items-center justify-center">
-                    <Zap className="w-5 h-5 text-accent" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium">₹45,000</p>
-                    <p className="text-xs text-muted-foreground">Yearly Savings</p>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div
                 className="absolute w-64 h-64 rounded-full bg-solar-gradient shadow-glow flex items-center justify-center z-10"
                 style={{
                   top: "50%",
