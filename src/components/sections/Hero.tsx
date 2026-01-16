@@ -21,7 +21,7 @@ export default function Hero() {
       </div>
 
       <div className="container-custom relative z-10 pt-24 sm:pt-32 pb-12 sm:pb-20">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           {/* Content */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -95,7 +95,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="relative hidden lg:block"
           >
-            <div className="relative aspect-square w-full max-w-md xl:max-w-lg mx-auto">
+            <div className="relative aspect-square w-full max-w-md lg:ml-auto xl:mx-auto">
               {/* Main circle */}
               <div className="absolute inset-0 rounded-full bg-solar-gradient opacity-20 animate-pulse" />
 
