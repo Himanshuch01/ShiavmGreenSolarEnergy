@@ -6,15 +6,17 @@ import { Button } from "@/components/ui/button";
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-hero-pattern">
-      {/* Background decoration */}
-      <div className="absolute inset-0 overflow-hidden">
+      {/* Background decoration - Fixed container reference */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <motion.div
           className="absolute -top-40 -right-40 w-96 h-96 bg-primary/10 rounded-full blur-3xl"
+          style={{ transform: "translate3d(0,0,0)" }}
           animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
           transition={{ duration: 8, repeat: Infinity }}
         />
         <motion.div
           className="absolute -bottom-40 -left-40 w-96 h-96 bg-secondary/10 rounded-full blur-3xl"
+          style={{ transform: "translate3d(0,0,0)" }}
           animate={{ scale: [1.2, 1, 1.2], opacity: [0.5, 0.3, 0.5] }}
           transition={{ duration: 8, repeat: Infinity }}
         />
