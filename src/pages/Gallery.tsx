@@ -41,10 +41,28 @@ const openingImages = [
   }
 ];
 
+const installationImages = [
+  {
+    id: 1,
+    src: "/install1.jpeg",
+    title: "Solar Installation Project",
+    date: "Recent Project"
+  },
+  {
+    id: 2,
+    src: "/install1.jpeg", // Placeholder as requested to use same image
+    title: "Commercial Installation",
+    date: "Recent Project"
+  }
+];
+
 export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const plugin = useRef(
     Autoplay({ delay: 3000, stopOnInteraction: false })
+  );
+  const pluginInstallations = useRef(
+    Autoplay({ delay: 3500, stopOnInteraction: false })
   );
 
   return (
@@ -56,7 +74,7 @@ export default function Gallery() {
 
       <Navbar />
 
-      <main className="min-h-screen pt-24 pb-20 bg-muted/20 flex items-center justify-center">
+      <main className="min-h-screen pt-24 pb-20 bg-muted/20 flex flex-col items-center">
         <section className="container-custom">
 
           <div className="max-w-6xl mx-auto bg-white dark:bg-card border border-border/50 shadow-xl rounded-3xl overflow-hidden">
@@ -105,6 +123,63 @@ export default function Gallery() {
                           </div>
 
                           {/* Text Overlay */}
+                          <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/90 via-black/60 to-transparent text-white">
+                            <h3 className="font-semibold text-xl md:text-2xl leading-none mb-2">{img.title}</h3>
+                            <p className="text-sm md:text-base text-white/80">{img.date}</p>
+                          </div>
+                        </div>
+                      </motion.div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <div className="flex justify-center gap-4 mt-6">
+                  <CarouselPrevious className="static translate-y-0 hover:bg-primary hover:text-white border-primary/20" />
+                  <CarouselNext className="static translate-y-0 hover:bg-primary hover:text-white border-primary/20" />
+                </div>
+              </Carousel>
+            </div>
+          </div>
+
+          <div className="max-w-6xl mx-auto bg-white dark:bg-card border border-border/50 shadow-xl rounded-3xl overflow-hidden mt-12 md:mt-20">
+            <div className="p-8 md:p-12 text-center border-b border-border/50">
+              <span className="inline-block py-1 px-3 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-widest uppercase mb-4">
+                Project Showcase
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold font-display tracking-tight text-foreground mb-4">
+                Our Installations
+              </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Delivering excellence in solar energy solutions. A showcase of our recent installations.
+              </p>
+            </div>
+
+            <div className="p-4 md:p-8 bg-muted/10">
+              <Carousel
+                plugins={[pluginInstallations.current]}
+                opts={{
+                  align: "center",
+                  loop: true,
+                }}
+                className="w-full max-w-4xl mx-auto"
+                onMouseEnter={pluginInstallations.current.stop}
+                onMouseLeave={pluginInstallations.current.reset}
+              >
+                <CarouselContent>
+                  {installationImages.map((img) => (
+                    <CarouselItem key={img.id} className="basis-full">
+                      <motion.div
+                        whileHover={{ scale: 1.01 }}
+                        className="group relative rounded-2xl overflow-hidden cursor-pointer shadow-md hover:shadow-xl bg-background transition-all duration-300 mx-auto"
+                        onClick={() => setSelectedImage(img.src)}
+                      >
+                        <div className="aspect-video relative overflow-hidden bg-black">
+                          <img
+                            src={img.src}
+                            alt={img.title}
+                            className="w-full h-full object-contain transition-transform duration-700"
+                          />
+                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center pointer-events-none">
+                          </div>
                           <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/90 via-black/60 to-transparent text-white">
                             <h3 className="font-semibold text-xl md:text-2xl leading-none mb-2">{img.title}</h3>
                             <p className="text-sm md:text-base text-white/80">{img.date}</p>
