@@ -15,7 +15,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Link } from "react-router-dom";
 import { supabase } from "@/lib/supabase";
-import StructuredData from "@/components/seo/StructuredData";
+import StructuredData, { organizationSchema } from "@/components/seo/StructuredData";
 
 const baseUrl = "https://shivamgreensolarenergy.in";
 
@@ -122,13 +122,13 @@ export default function Calculator() {
 
     // Approximate cost after subsidy
     const approxCostAfterSubsidy = estimatedCost - subsidy.total;
-    
+
     // Annual savings (approximately 85% of current bill)
     const annualSavings = data.monthlyBill * 12 * 0.85;
-    
+
     // Approximate payback period
     const paybackPeriod = approxCostAfterSubsidy / annualSavings;
-    
+
     // CO2 reduction (approximately 1500 kg per kW per year)
     const co2Reduction = finalSystemSize * 1500;
 
@@ -185,20 +185,20 @@ export default function Calculator() {
           content="shivam solar, shivam solar energy, shivamgreen solar, shivam green solar energy, solar energy company in India, rooftop solar solutions, solar calculator"
         />
         <link rel="canonical" href={`${baseUrl}/calculator`} />
-        
+
         {/* Open Graph */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`${baseUrl}/calculator`} />
         <meta property="og:title" content="Solar Calculator - Calculate Your Solar Savings | Shivam GreenSolar Energy" />
         <meta property="og:description" content="Use our free solar calculator to estimate your solar system size, cost, and savings. Find out how much you can save with solar energy." />
         <meta property="og:image" content={`${baseUrl}/logoo1.png`} />
-        
+
         {/* Twitter */}
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="Solar Calculator - Shivam GreenSolar Energy" />
         <meta name="twitter:description" content="Calculate your solar savings with our free calculator. Estimate system size, cost, and ROI." />
       </Helmet>
-      
+
       <StructuredData
         type="Service"
         data={{
@@ -210,7 +210,7 @@ export default function Calculator() {
       />
 
       <Navbar />
-      
+
       <main className="pt-24">
         {/* Hero */}
         <section className="section-padding bg-hero-pattern">
@@ -224,7 +224,7 @@ export default function Calculator() {
                 <span className="text-gradient">Solar Savings</span>
               </h1>
               <p className="text-lg text-muted-foreground">
-                Find out how much you can save with solar energy. Get instant estimates 
+                Find out how much you can save with solar energy. Get instant estimates
                 for system size, cost, and environmental impact.
               </p>
             </AnimatedSection>
@@ -377,7 +377,7 @@ export default function Calculator() {
                           <p className="text-sm text-muted-foreground">Approx. CO₂ Reduced/Year</p>
                         </div>
                       </div>
-                      
+
                       <div className="mb-6 p-4 rounded-lg bg-primary/5 border border-primary/20">
                         <p className="text-sm text-muted-foreground text-center">
                           <strong className="text-foreground">Note:</strong> All values are approximate and may vary based on actual system requirements, installation conditions, and current market rates. Final pricing will be provided after site inspection.
