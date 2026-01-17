@@ -6,27 +6,49 @@ import { Button } from "@/components/ui/button";
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-hero-pattern">
-      {/* Background decoration */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          className="absolute -top-40 -right-40 w-96 h-96 bg-primary/10 rounded-full blur-3xl"
-          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
-          transition={{ duration: 8, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute -bottom-40 -left-40 w-96 h-96 bg-secondary/10 rounded-full blur-3xl"
-          animate={{ scale: [1.2, 1, 1.2], opacity: [0.5, 0.3, 0.5] }}
-          transition={{ duration: 8, repeat: Infinity }}
-        />
+      {/* Background decoration - Fixed container reference */}
+      {/* Background decoration - Static SVG for Production Safety */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <svg
+          className="absolute w-full h-full"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+        >
+          <defs>
+            <filter id="blurFilter" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="15" />
+            </filter>
+          </defs>
+          {/* Large soft blue circle (top-right) */}
+          <circle
+            cx="80"
+            cy="20"
+            r="30"
+            fill="hsl(var(--primary))"
+            fillOpacity="0.1"
+            filter="url(#blurFilter)"
+          />
+          {/* Smaller teal circle (bottom-left) */}
+          <circle
+            cx="20"
+            cy="80"
+            r="25"
+            fill="hsl(var(--secondary))"
+            fillOpacity="0.1"
+            filter="url(#blurFilter)"
+          />
+        </svg>
       </div>
 
       <div className="container-custom relative z-10 pt-24 sm:pt-32 pb-12 sm:pb-20">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           {/* Content */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            className="relative z-20"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -45,8 +67,8 @@ export default function Hero() {
 
             {/* SEO: Add primary keywords naturally in first 100 words */}
             <p className="text-base sm:text-lg text-muted-foreground mb-6 sm:mb-8 max-w-lg">
-              Shivam Green Solar Energy is a trusted solar energy company in India offering 
-              rooftop solar solutions for homes and businesses. Transform your property with 
+              Shivam Green Solar Energy is a trusted solar energy company in India offering
+              rooftop solar solutions for homes and businesses. Transform your property with
               sustainable solar and reduce energy costs by up to 90%.
             </p>
 
@@ -92,17 +114,22 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative hidden lg:block"
+            className="relative hidden lg:block z-10"
           >
-            <div className="relative aspect-square max-w-lg mx-auto">
-              {/* Main circle */}
-              <div className="absolute inset-0 rounded-full bg-solar-gradient opacity-20 animate-pulse" />
-              
+            {/* Visual Container with enforced aspect ratio and no flex shrink */}
+            <div
+              className="relative w-full max-w-md lg:ml-auto xl:mx-auto flex-none"
+              style={{ aspectRatio: "1 / 1" }}
+            >
+              {/* Main circle - Static for stability */}
+              <div className="absolute inset-0 rounded-full bg-solar-gradient opacity-20" />
+
               {/* Floating elements */}
               <motion.div
-                className="absolute top-10 left-10 glass-card p-4"
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 3, repeat: Infinity }}
+                className="absolute top-10 left-10 glass-card p-4 z-20"
+                initial={{ y: 0 }}
+                animate={{ y: -10 }}
+                transition={{ duration: 3, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
@@ -115,33 +142,19 @@ export default function Hero() {
                 </div>
               </motion.div>
 
-              <motion.div
-                className="absolute bottom-20 right-5 glass-card p-4"
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 4, repeat: Infinity, delay: 0.5 }}
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-accent/20 flex items-center justify-center">
-                    <Zap className="w-5 h-5 text-accent" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium">₹45,000</p>
-                    <p className="text-xs text-muted-foreground">Yearly Savings</p>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full bg-solar-gradient shadow-glow flex items-center justify-center"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+              {/* Central Sun - Static Position, no rotation */}
+              <div
+                className="absolute w-64 h-64 rounded-full bg-solar-gradient shadow-glow flex items-center justify-center z-10"
+                style={{
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate3d(-50%, -50%, 0)"
+                }}
               >
                 <Sun className="w-24 h-24 text-primary-foreground" />
-              </motion.div>
+              </div>
 
-              {/* Orbit rings */}
-              <div className="absolute inset-0 rounded-full border border-primary/20 animate-[spin_20s_linear_infinite]" />
-              <div className="absolute inset-8 rounded-full border border-secondary/20 animate-[spin_25s_linear_infinite_reverse]" />
+              {/* Removed Orbit rings to prevent distortion/layout shifts */}
             </div>
           </motion.div>
         </div>

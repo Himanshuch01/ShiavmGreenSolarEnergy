@@ -20,6 +20,7 @@ const navLinks = [
     ],
   },
   { name: "Calculator", path: "/calculator" },
+  { name: "Gallery", path: "/gallery" },
   { name: "Contact", path: "/contact" },
 ];
 
@@ -31,7 +32,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 10);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -45,28 +46,38 @@ export default function Navbar() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled ? "glass py-4 shadow-md" : "bg-transparent py-6"
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out font-medium",
+        isScrolled
+          ? "glass py-3 shadow-lg backdrop-blur-md bg-white/80 dark:bg-black/80"
+          : "bg-transparent py-5"
       )}
     >
       <nav className="container-custom flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2 group">
-          <img 
-            src="/logoo1.png" 
-            alt="Shivam GreenSolar Energy Logo" 
-            className="h-10 sm:h-12 w-auto group-hover:scale-105 transition-transform"
-          />
-          <span className="font-display font-bold text-base sm:text-xl text-foreground hidden min-[375px]:inline">
-            Shivam <span className="text-primary">GreenSolar</span> Energy
-          </span>
-          <span className="font-display font-bold text-base sm:text-xl text-foreground min-[375px]:hidden">
-            <span className="text-primary">SG</span> Energy
-          </span>
+        <Link to="/" className="flex items-center gap-2 group relative z-10">
+          <div className="relative">
+            <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full scale-0 group-hover:scale-150 transition-transform duration-500" />
+            <img
+              src="/logoo1.png"
+              alt="Shivam GreenSolar Energy Logo"
+              className="h-10 sm:h-12 w-auto relative transform transition-transform duration-300 group-hover:rotate-3"
+            />
+          </div>
+          <div className="flex flex-col">
+            <span className="font-display font-bold text-lg sm:text-xl text-foreground leading-none tracking-tight hidden min-[375px]:block">
+              Shivam <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">GreenSolar</span>
+            </span>
+            <span className="text-[10px] tracking-widest text-muted-foreground font-medium uppercase hidden min-[375px]:block">
+              Energy 
+            </span>
+            <span className="font-display font-bold text-base text-foreground min-[375px]:hidden">
+              <span className="text-primary">SG</span> Energy
+            </span>
+          </div>
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden lg:flex items-center gap-1">
+        <div className="hidden lg:flex items-center gap-1 bg-white/40 dark:bg-black/20 backdrop-blur-sm p-1.5 rounded-full border border-white/20 shadow-sm">
           {navLinks.map((link) => (
             <div
               key={link.name}
@@ -77,38 +88,65 @@ export default function Navbar() {
               <Link
                 to={link.path}
                 className={cn(
-                  "px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-1",
+                  "relative px-4 py-2 rounded-full text-sm transition-all duration-300 flex items-center gap-1 group overflow-hidden",
                   location.pathname === link.path ||
                     (link.subLinks && location.pathname.startsWith(link.path))
-                    ? "text-primary bg-primary/10"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                    ? "text-primary-foreground font-semibold shadow-md"
+                    : "text-muted-foreground hover:text-foreground hover:bg-white/50"
                 )}
               >
-                {link.name}
-                {link.subLinks && <ChevronDown className="w-4 h-4" />}
+                {/* Active Background Animation */}
+                {(location.pathname === link.path ||
+                  (link.subLinks && location.pathname.startsWith(link.path))) && (
+                    <motion.div
+                      layoutId="navbar-active"
+                      className="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-full"
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
+                  )}
+
+                <span className="relative z-10 flex items-center gap-1">
+                  {link.name}
+                  {link.subLinks && (
+                    <ChevronDown className={cn(
+                      "w-3 h-3 transition-transform duration-300",
+                      openDropdown === link.name ? "rotate-180" : ""
+                    )} />
+                  )}
+                </span>
+
+                {/* Hover Underline (for non-active items) */}
+                {!(location.pathname === link.path || (link.subLinks && location.pathname.startsWith(link.path))) && (
+                  <span className="absolute bottom-1.5 left-4 right-4 h-0.5 bg-primary/50 w-0 group-hover:w-[calc(100%-2rem)] transition-all duration-300 rounded-full" />
+                )}
               </Link>
 
               {/* Dropdown */}
               <AnimatePresence>
                 {link.subLinks && openDropdown === link.name && (
                   <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute top-full left-0 mt-2 w-56 glass-card p-2"
+                    initial={{ opacity: 0, y: 15, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                    className="absolute top-full left-0 mt-3 w-64 glass-card p-3 border border-white/50 shadow-xl rounded-2xl overflow-hidden z-50"
                   >
+                    <div className="absolute inset-0 bg-gradient-to-b from-white/60 to-white/90 dark:from-black/60 dark:to-black/90 backdrop-blur-xl -z-10" />
                     {link.subLinks.map((subLink) => (
                       <Link
                         key={subLink.name}
                         to={subLink.path}
                         className={cn(
-                          "block px-4 py-2.5 rounded-lg text-sm transition-colors",
+                          "flex items-center px-4 py-3 rounded-xl text-sm transition-all duration-200 group/item relative overflow-hidden",
                           location.pathname === subLink.path
-                            ? "text-primary bg-primary/10"
-                            : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                            ? "text-primary font-medium bg-primary/10"
+                            : "text-muted-foreground hover:text-foreground hover:bg-primary/5"
                         )}
                       >
+                        <span className={cn(
+                          "w-1.5 h-1.5 rounded-full mr-3 transition-all duration-300",
+                          location.pathname === subLink.path ? "bg-primary scale-125" : "bg-primary/30 group-hover/item:bg-primary"
+                        )} />
                         {subLink.name}
                       </Link>
                     ))}
@@ -120,29 +158,45 @@ export default function Navbar() {
         </div>
 
         {/* CTA Button */}
-        <div className="hidden lg:flex items-center gap-4">
+        <div className="hidden lg:flex items-center gap-6">
           <a
             href="tel:+918009430952"
-            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+            className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors group"
           >
-            <Phone className="w-4 h-4" />
+            <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              <Phone className="w-4 h-4 text-primary" />
+            </div>
             <span>+91 8009430952</span>
           </a>
-          <Button variant="hero" size="lg" asChild>
-            <Link to="/contact">Get Free Quote</Link>
+          <Button
+            variant="default"
+            size="lg"
+            className="relative overflow-hidden shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all duration-300 rounded-full px-8 bg-gradient-to-r from-primary to-secondary border-0 group"
+            asChild
+          >
+            <Link to="/contact">
+              <span className="relative z-10">Get Free Quote</span>
+              <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 rounded-full" />
+            </Link>
           </Button>
         </div>
 
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="lg:hidden p-2 rounded-lg hover:bg-muted transition-colors"
+          className="lg:hidden p-2 rounded-full hover:bg-muted/50 transition-colors border border-transparent hover:border-border"
+          aria-label="Toggle menu"
         >
-          {isMobileMenuOpen ? (
-            <X className="w-6 h-6" />
-          ) : (
-            <Menu className="w-6 h-6" />
-          )}
+          <motion.div
+            animate={{ rotate: isMobileMenuOpen ? 180 : 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            {isMobileMenuOpen ? (
+              <X className="w-7 h-7 text-foreground" />
+            ) : (
+              <Menu className="w-7 h-7 text-foreground" />
+            )}
+          </motion.div>
         </button>
       </nav>
 
@@ -153,33 +207,42 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden glass border-t border-border"
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="lg:hidden bg-background/95 backdrop-blur-xl border-t border-border/50 overflow-hidden shadow-2xl"
           >
             <div className="container-custom py-6 space-y-2">
-              {navLinks.map((link) => (
-                <div key={link.name}>
+              {navLinks.map((link, i) => (
+                <motion.div
+                  key={link.name}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.05 }}
+                >
                   <Link
                     to={link.path}
+                    onClick={() => !link.subLinks && setIsMobileMenuOpen(false)}
                     className={cn(
-                      "block px-4 py-3 rounded-lg text-base font-medium transition-colors",
+                      "flex items-center justify-between px-4 py-3 rounded-xl text-base font-medium transition-all",
                       location.pathname === link.path
-                        ? "text-primary bg-primary/10"
-                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                        ? "text-primary bg-primary/10 shadow-sm"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                     )}
                   >
                     {link.name}
+                    {link.name === "Get Free Quote" && <ChevronDown className="w-4 h-4" />}
                   </Link>
                   {link.subLinks && (
-                    <div className="ml-4 mt-1 space-y-1">
+                    <div className="ml-4 mt-2 pl-4 border-l-2 border-primary/20 space-y-1">
                       {link.subLinks.map((subLink) => (
                         <Link
                           key={subLink.name}
                           to={subLink.path}
+                          onClick={() => setIsMobileMenuOpen(false)}
                           className={cn(
-                            "block px-4 py-2 rounded-lg text-sm transition-colors",
+                            "block px-4 py-2.5 rounded-lg text-sm transition-colors",
                             location.pathname === subLink.path
-                              ? "text-primary bg-primary/10"
-                              : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                              ? "text-primary bg-primary/5 font-medium"
+                              : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
                           )}
                         >
                           {subLink.name}
@@ -187,13 +250,30 @@ export default function Navbar() {
                       ))}
                     </div>
                   )}
-                </div>
+                </motion.div>
               ))}
-              <div className="pt-4 border-t border-border">
-                <Button variant="hero" size="lg" className="w-full" asChild>
-                  <Link to="/contact">Get Free Quote</Link>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="pt-6 mt-4 border-t border-border/50"
+              >
+                <Button
+                  size="lg"
+                  className="w-full bg-gradient-to-r from-primary to-secondary shadow-lg shadow-primary/20"
+                  asChild
+                >
+                  <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>Get Free Quote</Link>
                 </Button>
-              </div>
+
+                <a
+                  href="tel:+918009430952"
+                  className="flex items-center justify-center gap-2 mt-4 text-sm font-medium text-muted-foreground"
+                >
+                  <Phone className="w-4 h-4" />
+                  <span>Call us: +91 8009430952</span>
+                </a>
+              </motion.div>
             </div>
           </motion.div>
         )}

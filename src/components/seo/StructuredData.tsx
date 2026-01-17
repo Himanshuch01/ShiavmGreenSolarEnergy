@@ -37,7 +37,7 @@ export const organizationSchema = {
   },
   contactPoint: {
     "@type": "ContactPoint",
-    telephone: "+91-9511048844",
+    telephone: "+91-8009430952",
     contactType: "Customer Service",
     areaServed: "IN",
     availableLanguage: ["en", "hi"],
@@ -54,8 +54,8 @@ export const localBusinessSchema = {
   openingHours: "Mo-Sa 09:00-18:00",
   geo: {
     "@type": "GeoCoordinates",
-    latitude: "26.8467",
-    longitude: "80.9462",
+    latitude: "26.90075",
+    longitude: "80.971306",
   },
 };
 

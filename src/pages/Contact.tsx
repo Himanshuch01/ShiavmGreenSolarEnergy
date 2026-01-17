@@ -43,8 +43,8 @@ const contactInfo = [
   {
     icon: Phone,
     title: "Phone",
-    content: "+91 9511048844",
-    link: "tel:+919511048844",
+    content: "+91 8009430952",
+    link: "tel:+918009430952",
   },
   {
     icon: Mail,
@@ -364,14 +364,14 @@ export default function Contact() {
         {/* Map Section */}
         <section id="map" className="h-64 sm:h-80 md:h-96 w-full">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.2345678901234!2d80.9462!3d26.8467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfd991f32b16b%3A0x93fba75b0a4b026a!2sKalyanpur%2C%20Lucknow%2C%20Uttar%20Pradesh%20226022!5e0!3m2!1sen!2sin!4v1703000000000!5m2!1sen!2sin"
+            src="https://maps.google.com/maps?q=26.90075,80.971306&hl=en&z=15&output=embed"
             width="100%"
             height="100%"
             style={{ border: 0 }}
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            title="Shivam GreenSolar Energy Office Location - Kalyanpur, Lucknow"
+            title="Shivam GreenSolar Energy Installation Location"
           />
         </section>
       </main>
