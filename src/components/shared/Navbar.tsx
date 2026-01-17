@@ -68,7 +68,7 @@ export default function Navbar() {
               Shivam <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">GreenSolar</span>
             </span>
             <span className="text-[10px] tracking-widest text-muted-foreground font-medium uppercase hidden min-[375px]:block">
-              Energy Solutions
+              Energy 
             </span>
             <span className="font-display font-bold text-base text-foreground min-[375px]:hidden">
               <span className="text-primary">SG</span> Energy
