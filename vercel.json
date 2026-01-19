@@ -9,6 +9,18 @@
       "source": "/((?!api/).*)",
       "destination": "/index.html"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.shivamgreensolarenergy.in"
+        }
+      ],
+      "destination": "https://shivamgreensolarenergy.in/:path*",
+      "permanent": true
+    }
   ]
 }
-

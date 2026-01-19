@@ -5,7 +5,7 @@ import CountUp from "@/components/shared/CountUp";
 const stats = [
   {
     icon: Sun,
-    value: 150,
+    value: 155,
     suffix: "+",
     label: "Solar Installations",
     description: "Across India",

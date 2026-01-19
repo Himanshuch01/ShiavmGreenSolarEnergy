@@ -77,6 +77,9 @@ interface Results {
   paybackPeriod: number;
   co2Reduction: number;
   subsidyAmount: number;
+  approxCostAfterSubsidy: number;
+  centralSubsidy: number;
+  stateSubsidy: number;
 }
 
 export default function Calculator() {
@@ -174,7 +177,7 @@ export default function Calculator() {
     <>
       <Helmet>
         <html lang="en" />
-        <title>Solar Calculator - Shivam GreenSolar Energy | Calculate Your Solar Savings</title>
+        <title>Solar Calculator – Shivam Green Solar Energy</title>
         <meta
           name="description"
           content="Use our free solar calculator to estimate your solar system size, cost, and savings. Calculate approximate installation cost, subsidy amount, payback period, and annual savings for your home or business in India."

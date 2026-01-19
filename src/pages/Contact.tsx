@@ -141,7 +141,7 @@ export default function Contact() {
     <>
       <Helmet>
         <html lang="en" />
-        <title>Contact Shivam Green Solar Energy | Solar Installation Support</title>
+        <title>Contact Us – Shivam Green Solar Energy</title>
         <meta
           name="description"
           content="Contact Shivam Green Solar Energy for solar installation queries, pricing, and consultations."

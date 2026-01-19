@@ -157,7 +157,7 @@ type ServiceKey = keyof typeof serviceData;
 
 export default function ServiceDetail() {
   const { serviceType } = useParams<{ serviceType: string }>();
-  
+
   if (!serviceType || !serviceData[serviceType as ServiceKey]) {
     return <Navigate to="/services" replace />;
   }
@@ -170,7 +170,7 @@ export default function ServiceDetail() {
       <Helmet>
         {/* SEO: Dynamic title & description with keywords */}
         <title>
-          {service.title} | Shivam Green Solar Energy – Rooftop Solar Solutions in India
+          {service.title} – Shivam Green Solar Energy
         </title>
         <meta
           name="description"
@@ -222,7 +222,7 @@ export default function ServiceDetail() {
       />
 
       <Navbar />
-      
+
       <main className="pt-24">
         {/* Hero */}
         <section className="section-padding bg-hero-pattern">

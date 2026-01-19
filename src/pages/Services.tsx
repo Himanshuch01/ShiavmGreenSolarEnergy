@@ -52,27 +52,27 @@ export default function Services() {
     <>
       <Helmet>
         <html lang="en" />
-        <title>Solar Services by Shivam Green Solar Energy</title>
+        <title>Services – Shivam Green Solar Energy</title>
         <meta
           name="description"
           content="Explore rooftop solar installation, commercial solar solutions, and maintenance services by Shivam Green Solar Energy."
         />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href={`${baseUrl}/services`} />
-        
+
         {/* SEO: Open Graph */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`${baseUrl}/services`} />
         <meta property="og:title" content="Solar Services – Rooftop, Residential, Commercial & Industrial" />
         <meta property="og:description" content="Comprehensive rooftop solar solutions across India by Shivam Green Solar Energy." />
         <meta property="og:image" content={`${baseUrl}/logoo1.png`} />
-        
+
         {/* SEO: Twitter Card */}
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="Solar Services - Shivam GreenSolar Energy" />
         <meta name="twitter:description" content="Comprehensive solar solutions for residential, commercial, and industrial needs." />
       </Helmet>
-      
+
       {/* SEO: Services schema for rich results */}
       <StructuredData
         type="Service"
@@ -108,7 +108,7 @@ export default function Services() {
       />
 
       <Navbar />
-      
+
       <main className="pt-24">
         {/* Hero */}
         <section className="section-padding bg-hero-pattern">
@@ -123,8 +123,8 @@ export default function Services() {
               </h1>
               {/* SEO: Add keywords naturally in intro copy */}
               <p className="text-lg text-muted-foreground">
-                From residential rooftops to industrial complexes, Shivam Green Solar Energy 
-                (shivam solar) provides end-to-end rooftop solar solutions tailored to your 
+                From residential rooftops to industrial complexes, Shivam Green Solar Energy
+                (shivam solar) provides end-to-end rooftop solar solutions tailored to your
                 needs across India.
               </p>
             </AnimatedSection>
@@ -140,9 +140,8 @@ export default function Services() {
                   key={service.title}
                   direction={index % 2 === 0 ? "left" : "right"}
                 >
-                  <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center ${
-                    index % 2 !== 0 ? "lg:flex-row-reverse" : ""
-                  }`}>
+                  <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center ${index % 2 !== 0 ? "lg:flex-row-reverse" : ""
+                    }`}>
                     <div className={index % 2 !== 0 ? "lg:order-2" : ""}>
                       <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-solar-gradient shadow-glow flex items-center justify-center mb-4 sm:mb-6">
                         <service.icon className="w-7 h-7 sm:w-8 sm:h-8 text-primary-foreground" />
@@ -170,9 +169,8 @@ export default function Services() {
                         </Link>
                       </Button>
                     </div>
-                    <div className={`glass-card p-6 sm:p-8 aspect-video flex items-center justify-center ${
-                      index % 2 !== 0 ? "lg:order-1" : ""
-                    }`}>
+                    <div className={`glass-card p-6 sm:p-8 aspect-video flex items-center justify-center ${index % 2 !== 0 ? "lg:order-1" : ""
+                      }`}>
                       <service.icon className="w-24 h-24 sm:w-32 sm:h-32 text-primary/20" />
                     </div>
                   </div>
@@ -190,7 +188,7 @@ export default function Services() {
                 Not Sure Which Solution Fits You?
               </h2>
               <p className="text-lg text-muted-foreground mb-8">
-                Our solar experts will help you find the perfect solution for your needs. 
+                Our solar experts will help you find the perfect solution for your needs.
                 Get a free consultation today!
               </p>
               <Button variant="hero" size="xl" asChild>
