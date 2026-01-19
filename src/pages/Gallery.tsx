@@ -68,8 +68,9 @@ export default function Gallery() {
   return (
     <>
       <Helmet>
-        <title>Grand Opening | Shivam GreenSolar Energy</title>
+        <title>Gallery – Shivam Green Solar Energy</title>
         <meta name="description" content="Highlights from our Grand Opening ceremony." />
+        <link rel="canonical" href="https://shivamgreensolarenergy.in/gallery" />
       </Helmet>
 
       <Navbar />

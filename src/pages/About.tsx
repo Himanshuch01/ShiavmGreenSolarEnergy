@@ -27,7 +27,7 @@ const team = [
 ];
 
 const certifications = [
-  
+
   "ISO 9001:2015",
   "ISO 14001:2015",
   "BIS Certified",
@@ -38,7 +38,7 @@ export default function About() {
   return (
     <>
       <Helmet>
-        <title>About Shivam Green Solar Energy | Trusted Solar Company</title>
+        <title>About Us – Shivam Green Solar Energy</title>
         <meta
           name="description"
           content="Learn about Shivam Green Solar Energy, our mission, experience, and commitment to clean solar power."
@@ -61,7 +61,7 @@ export default function About() {
       <StructuredData type="Organization" data={organizationSchema} />
 
       <Navbar />
-      
+
       <main className="pt-24">
         {/* Hero Section */}
         <section className="section-padding bg-hero-pattern">
@@ -75,8 +75,8 @@ export default function About() {
                 <span className="text-gradient">Sustainable Future</span>
               </h1>
               <p className="text-lg text-muted-foreground">
-                Shivam Green Solar Energy is a solar energy company in India delivering 
-                rooftop solar solutions for homes, businesses, and industries. As shivam 
+                Shivam Green Solar Energy is a solar energy company in India delivering
+                rooftop solar solutions for homes, businesses, and industries. As shivam
                 solar and shivam solar energy, we make clean energy accessible and affordable.
               </p>
             </AnimatedSection>
@@ -94,9 +94,9 @@ export default function About() {
                   </div>
                   <h2 className="font-display text-2xl font-bold mb-4">Our Mission</h2>
                   <p className="text-muted-foreground leading-relaxed">
-                    To accelerate India's transition to clean energy by providing world-class 
-                    solar solutions that are accessible, affordable, and reliable. We aim to 
-                    empower every household and business to become energy independent while 
+                    To accelerate India's transition to clean energy by providing world-class
+                    solar solutions that are accessible, affordable, and reliable. We aim to
+                    empower every household and business to become energy independent while
                     contributing to a sustainable planet.
                   </p>
                 </div>
@@ -109,9 +109,9 @@ export default function About() {
                   </div>
                   <h2 className="font-display text-2xl font-bold mb-4">Our Vision</h2>
                   <p className="text-muted-foreground leading-relaxed">
-                    To be India's most trusted solar energy partner, leading the charge 
-                    towards a carbon-neutral future. We envision a world where clean, 
-                    renewable energy powers every home, every business, and every community, 
+                    To be India's most trusted solar energy partner, leading the charge
+                    towards a carbon-neutral future. We envision a world where clean,
+                    renewable energy powers every home, every business, and every community,
                     creating a healthier planet for future generations.
                   </p>
                 </div>
@@ -142,9 +142,8 @@ export default function About() {
                   <AnimatedSection
                     key={item.year}
                     delay={index * 0.1}
-                    className={`relative flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8 mb-8 md:mb-12 ${
-                      index % 2 === 0 ? "md:flex-row-reverse" : ""
-                    }`}
+                    className={`relative flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8 mb-8 md:mb-12 ${index % 2 === 0 ? "md:flex-row-reverse" : ""
+                      }`}
                   >
                     <div className={`flex-1 w-full md:w-auto ${index % 2 === 0 ? "md:text-right" : ""}`}>
                       <div className="glass-card p-4 sm:p-6 inline-block w-full md:w-auto">
